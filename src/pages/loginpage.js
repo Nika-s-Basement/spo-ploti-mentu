@@ -1,43 +1,41 @@
 import React, { useState } from 'react';
-import Button from '../components/loginbutton/loginbutton.js';
+import './loginpage.css';
+import LoginButton from '../components/loginbutton/loginbutton.js';
 import InputField from '../components/logininput/logininput.js';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setEmailError('');
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
-  const handleLogin = () => {
-    // Логика входа (например, отправка данных на сервер)
-    console.log('Email:', email);
-    console.log('Password:', password);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const emailRegex = /^[^\s@]+@gibdd\.ru$/;
+    if (!emailRegex.test(email)) {
+      setEmailError('Пожалуйста, введите корректный адрес электронной почты @gibdd.ru');
+      return;
+    }
+    // Добавьте вашу логику отправки формы здесь
   };
 
   return (
-    <div>
+    <div className="login-form">
       <h1>Вход</h1>
-      <InputField
-        type="email"
-        name="email"
-        value={email}
-        onChange={handleEmailChange}
-        placeholder="Введите email"
-      />
-      <InputField
-        type="password"
-        name="password"
-        value={password}
-        onChange={handlePasswordChange}
-        placeholder="Введите пароль"
-      />
-      <Button onClick={handleLogin} text="Войти" />
+      <form onSubmit={handleSubmit}>
+        <InputField type="email" placeholder="ivanov.v.v@gibdd.ru" onChange={handleEmailChange} />
+        {emailError && <p className="error-message">{emailError}</p>}
+        <InputField type="password" placeholder="********" onChange={handlePasswordChange} />
+        <LoginButton type="submit">Войти</LoginButton>
+      </form>
     </div>
   );
 };

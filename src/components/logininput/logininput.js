@@ -1,14 +1,14 @@
 import React from 'react';
+import './logininput';
 
-const InputField = ({ type, name, value, onChange, placeholder }) => {
+const InputField = ({ type, placeholder, onChange }) => {
   return (
-    <input
-      type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
+    <input className="login-input"
+     type={type}
       placeholder={placeholder}
-    />
+      onChange={onChange}
+      required
+      title="Пожалуйста, введите корректный адрес электронной почты" />
   );
 };
 

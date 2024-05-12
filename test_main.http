@@ -1,23 +1,28 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
-Accept: application/json
-
-###
-
-GET http://127.0.0.1:8000/hello/User
-Accept: application/json
-
-###
-
-GET http://127.0.0.1:8000/login/pidoras@gmail.com/jwr_noornnn
-
-###
 
 POST http://127.0.0.1:8000/login/
 Content-Type: application/json
 
 {
-    "email": "ebalvfshrot@mail.ru",
-    "password": "матьвканаве"
+    "email": "lnjdlk@gmail.com",
+    "password": "сосузавзтку"
+}
+
+###
+
+POST http://127.0.0.1:8000/register/lil/
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImViYWx2ZnNocm90QG1haWwucnUiLCJyYW5rIjoiXHUwNDNmXHUwNDNlXHUwNDNiXHUwNDNhXHUwNDNlXHUwNDMyXHUwNDNkXHUwNDM4XHUwNDNhIiwiZGVwX2lkIjoxLCJleHAiOjE3MTU1Mzc3Mjh9.tB_do6KdMb0dqyJZ6_7ON54ATxJjkw6UTx2XbdlGO48",
+    "id": 2,
+    "fio": "Дипор Д.Р.",
+    "rank": "lil",
+    "experience": 7,
+    "age": 29,
+    "dep_id": 1,
+    "boss": 1,
+    "email": "pidoras@gmail.com",
+    "password": "сосузавзтку"
 }

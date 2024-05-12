@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from create_jwt import create_access_token, decode_token
 from dbxd.add_ment import add_ment
 from dbxd.checkLogin import check_login_ment
-from dbxd.get_info import get_info
+from dbxd.get_info import get_info_by_id
 from models.loginModel import Ment
 from models.registerModel import lil_form
 
@@ -33,6 +33,7 @@ async def register(ment: lil_form):
 
 
 # получение ГАИ по id
-@app.get("/get/gai/{id}")
+@app.get("/get/gai/{idid}")
 async def get_gai(idid: int):
-    return await get_info("menti_department", ["address"], idid)
+    response = await get_info_by_id("menti_departments", ["address"], idid)
+    return response

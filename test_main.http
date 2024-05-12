@@ -26,3 +26,8 @@ Content-Type: application/json
     "email": "pidoras@gmail.com",
     "password": "сосузавзтку"
 }
+
+
+###
+GET http://127.0.0.1:8000/get/gai/1
+Accept: application/json

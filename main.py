@@ -3,12 +3,14 @@ from fastapi import FastAPI
 from create_jwt import create_access_token, decode_token
 from dbxd.add_ment import add_ment
 from dbxd.checkLogin import check_login_ment
+from dbxd.get_info import get_info
 from models.loginModel import Ment
 from models.registerModel import lil_form
 
 app = FastAPI()
 
 
+# login для всех ментов
 @app.post("/login/")
 async def login(ment: Ment):
     answer = await check_login_ment(ment.email, ment.password)
@@ -18,6 +20,7 @@ async def login(ment: Ment):
     return response
 
 
+# регистрация lil ментов (может только main мент)
 @app.post("/register/lil/")
 async def register(ment: lil_form):
     answer = await check_login_ment(ment.email, ment.password)
@@ -27,3 +30,9 @@ async def register(ment: lil_form):
             response = await add_ment(ment)
             return response
     return {"login": "Already registered"}
+
+
+# получение ГАИ по id
+@app.get("/get/gai/{id}")
+async def get_gai(idid: int):
+    return await get_info("menti_department", ["address"], idid)

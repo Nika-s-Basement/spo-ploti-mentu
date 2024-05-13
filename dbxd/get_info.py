@@ -22,6 +22,3 @@ async def get_info_by_id(where, hat, idid):
     finally:
         cur.close()
         conn.close()
-
-
-print(get_info_by_id("menti_departments", ["address"], 1))

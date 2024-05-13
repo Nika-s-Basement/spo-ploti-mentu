@@ -1,12 +1,14 @@
 import psycopg2
 
-from conn import connect
+from conn import connection
 from models.registerModel import lil_form
 
 
 async def add_ment(form: lil_form):
+    cur = None
+    conn = None
     try:
-        conn = psycopg2.connect(**connect)
+        conn = psycopg2.connect(**connection)
         cur = conn.cursor()
         data = [form.id, form.fio, form.rank, form.experience, form.age,
                 form.dep_id, form.boss, form.email, form.password]

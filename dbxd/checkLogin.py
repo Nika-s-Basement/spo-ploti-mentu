@@ -1,13 +1,11 @@
 import psycopg2
 
+from conn import connect
+
 
 async def check_login_ment(email, password):
     try:
-        conn = psycopg2.connect(dbname="dtp_ploti_mentu",
-                                user="postgres",
-                                password="aza_967.",
-                                host="localhost",
-                                port="5432")
+        conn = psycopg2.connect(**connect)
         curr = conn.cursor()
         curr.execute('''SELECT email, rank, dep_id, fio FROM main_ments 
         WHERE email = %s and password = %s''', (email, password))

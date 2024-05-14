@@ -9,7 +9,7 @@ async def get_info_by_id(where, hat, idid):
     try:
         conn = psycopg2.connect(**connection)
         cur = conn.cursor()
-        which = " ".join(hat)
+        which = ", ".join(hat)
         cur.execute(f"SELECT {which} FROM {where} WHERE id = %s", (idid,))
         rows = cur.fetchall()
         response = dict()
@@ -24,3 +24,4 @@ async def get_info_by_id(where, hat, idid):
     finally:
         cur.close()
         conn.close()
+

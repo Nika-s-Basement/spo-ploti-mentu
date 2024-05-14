@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 
-class Ment(BaseModel):
+class Login(BaseModel):
     email: str
     password: str

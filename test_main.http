@@ -5,7 +5,7 @@ POST http://127.0.0.1:8000/login/
 Content-Type: application/json
 
 {
-    "email": "lnjdlk@gmail.com",
+    "email": "pidoras@gmail.com",
     "password": "сосузавзтку"
 }
 
@@ -29,5 +29,28 @@ Content-Type: application/json
 
 
 ###
+
+
 GET http://127.0.0.1:8000/get/gai/1
 Accept: application/json
+
+
+###
+
+
+GET http://127.0.0.1:8000/get/ment/1
+Accept: application/json
+
+
+###
+
+
+POST http://127.0.0.1:8000/register/user/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "fio": "Корпенко А.В.",
+  "license": 243672318423,
+
+}

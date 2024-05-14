@@ -51,6 +51,6 @@ Content-Type: application/json
 {
   "id": 1,
   "fio": "Корпенко А.В.",
-  "license": 243672318423,
+  "license": 243672318423
 
 }

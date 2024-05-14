@@ -9,17 +9,11 @@ async def check_login_ment(email, password):
     try:
         conn = psycopg2.connect(**connection)
         curr = conn.cursor()
-        curr.execute('''SELECT email, rank, dep_id, fio FROM main_ments 
+        curr.execute('''SELECT email, rank, dep_id, fio FROM lil_ment 
         WHERE email = %s and password = %s''', (email, password))
         rows = curr.fetchone()
         if rows is None:
-            curr.execute('''SELECT email, rank, dep_id, fio FROM lil_ment 
-            WHERE email = %s and password = %s''', (email, password))
-            rows = curr.fetchone()
-            if rows is None:
-                return False
-            ret_data = [{"email": rows[0], "rank": rows[1], "dep_id": rows[2]}, rows[3]]
-            return ret_data
+            return False
         ret_data = [{"email": rows[0], "rank": rows[1], "dep_id": rows[2]}, rows[3]]
         return ret_data
     except (Exception, psycopg2.DatabaseError) as error:
@@ -35,13 +29,15 @@ async def check_login_user(email, password):
     try:
         conn = psycopg2.connect(**connection)
         cur = conn.cursor()
-        cur.execute('''SELECT * FROM users WHERE email = %s and password = %s''',(email, password))
+        cur.execute('''SELECT * FROM users WHERE email = %s and password = %s''',
+                    (email, password))
         data = cur.fetchone()
         if data is None:
-            return {"message": False}
-        return {"data": {"id": data[0], "fio": data[1], "license": data[2], "card": [data[3]]}}
+            return False
+        return {"id": data[0], "fio": data[1], "license": data[2], "card": [data[3]]}
     except (Exception, psycopg2.DatabaseError) as error:
         return {"Error": error}
     finally:
         cur.close()
         conn.close()
+

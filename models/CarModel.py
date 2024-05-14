@@ -2,7 +2,8 @@ from pydantic import BaseModel
 
 
 class CarModel(BaseModel):
-    id: int
+    token: str
+    car_num: str
     pts: int
     insurance: int
     id_user: int

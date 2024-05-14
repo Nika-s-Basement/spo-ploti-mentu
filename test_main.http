@@ -1,7 +1,7 @@
 # Test your FastAPI endpoints
 
 
-POST http://127.0.0.1:8000/login/
+POST http://127.0.0.1:8000/login/ment/
 Content-Type: application/json
 
 {
@@ -49,8 +49,47 @@ POST http://127.0.0.1:8000/register/user/
 Content-Type: application/json
 
 {
-  "id": 1,
   "fio": "Корпенко А.В.",
-  "license": 243672318423
-
+  "license": 243672423,
+  "card": 2341437273,
+  "email": "noejv@mgni.com",
+  "password": "nfjunijnnbnwkj"
 }
+
+###
+
+POST http://127.0.0.1:8000/login/user/
+Content-Type: application/json
+
+{
+  "email": "noejv@mgni.com",
+  "password": "nfjunijnnbnwkj"
+}
+
+###
+
+POST http://127.0.0.1:8000/get/user/data
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpZG9yYXNAZ21haWwuY29tIiwicmFuayI6Ilx1MDQzY1x1MDQzMFx1MDQzOVx1MDQzZVx1MDQ0MCIsImRlcF9pZCI6MSwiZXhwIjoxNzE1ODEwNDAwfQ.lbdsYZAPzC_HHBHKjG5j4i-Dd5uJSRE4YkmSOUVEfHk",
+  "license": 243672423
+}
+
+###
+
+POST http://127.0.0.1:8000/add/car/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzNjcyNDIzLCJmaW8iOiJcdTA0MWFcdTA0M2VcdTA0NDBcdTA0M2ZcdTA0MzVcdTA0M2RcdTA0M2FcdTA0M2UgXHUwNDEwLlx1MDQxMi4iLCJsaWNlbnNlIjoyMzQxNDM3MjczLCJjYXJkIjpbIm5vZWp2QG1nbmkuY29tIl0sInJhbmsiOiJ1c2VyIiwiZXhwIjoxNzE1ODEwNDAwfQ.Z6ClkXpebH3iipQIPOhxK-JIvVLs7VxtkXl25FIAmGQ",
+  "car_num": "a348пт777",
+  "pts": 7234863248,
+  "insurance": 2374798734,
+  "id_user": 243672423
+}
+
+###
+
+GET http://127.0.0.1:8000/get/user/car/A348HT777
+Accept: application/json

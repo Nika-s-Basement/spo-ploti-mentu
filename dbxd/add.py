@@ -31,9 +31,8 @@ async def add_user(form: User):
     try:
         conn = psycopg2.connect(**connection)
         cur = conn.cursor()
-        cur.execute('''INSERT INTO users (license, fio, card, email, password) 
-        VALUES  %s, %s, %s, %s, %s''',
-                    [form.license, form.fio, form.card, form.email, form.password])
+        cur.execute("INSERT INTO users (license, fio, card, email, password) VALUES (%s, %s, %s, %s, %s)",
+                    (form.license, form.fio, form.card, form.email, form.password))
         conn.commit()
         return True
     except (Exception, psycopg2.DatabaseError) as error:
@@ -47,10 +46,10 @@ async def add_car(car: CarModel):
     cur = None
     conn = None
     try:
-        conn = psycopg2.connect(connection)
+        conn = psycopg2.connect(**connection)
         cur = conn.cursor()
-        cur.execute('''INSERT INTO car (id, pts, insurance, id_user)
-        VALUES %s, %s, %s, %s''', (car.id, car.pts, car.insurance, car.id_user))
+        cur.execute('''INSERT INTO car (car_num, pts, insurance, id_user)
+        VALUES (%s, %s, %s, %s)''', (car.car_num, car.pts, car.insurance, car.id_user))
         conn.commit()
         return True
     except (Exception, psycopg2.DatabaseError) as error:
@@ -58,3 +57,4 @@ async def add_car(car: CarModel):
     finally:
         cur.close()
         conn.close()
+

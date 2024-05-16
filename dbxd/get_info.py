@@ -43,3 +43,22 @@ async def get_info_car(id):
     finally:
         conn.close()
         cur.close()
+
+
+async def get_car(id):
+    cur = None
+    conn = None
+    try:
+        conn = psycopg2.connect(**connection)
+        cur = conn.cursor()
+        cur.execute('''SELECT pts, insurance, id_user
+                        FROM car WHERE car_num = %s''', (id, ))
+        data = cur.fetchone()
+        if data is None:
+            return False
+        return True
+    except (Exception, psycopg2.DatabaseError) as error:
+        return {"message": error}
+    finally:
+        conn.close()
+        cur.close()

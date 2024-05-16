@@ -1,6 +1,7 @@
 import psycopg2
 
 from conn import connection
+from models.UserModel import UserDtp
 
 
 async def check_login_ment(email, password):
@@ -41,3 +42,21 @@ async def check_login_user(email, password):
         cur.close()
         conn.close()
 
+
+async def check_user(license):
+    cur = None
+    conn = None
+    try:
+        conn = psycopg2.connect(**connection)
+        cur = conn.cursor()
+        cur.execute('''SELECT * FROM users WHERE license = %s''',
+                    (license,))
+        data = cur.fetchone()
+        if data is None:
+            return False
+        return True
+    except (Exception, psycopg2.DatabaseError) as error:
+        return {"Error": error}
+    finally:
+        cur.close()
+        conn.close()

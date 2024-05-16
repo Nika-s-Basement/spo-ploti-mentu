@@ -7,3 +7,9 @@ class User(BaseModel):
     card: int
     email: str
     password: str
+
+
+class UserDtp(BaseModel):
+    fio: str
+    license: int
+    email: str

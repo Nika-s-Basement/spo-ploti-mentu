@@ -7,3 +7,9 @@ class CarModel(BaseModel):
     pts: int
     insurance: int
     id_user: int
+
+
+class CarDtp(BaseModel):
+    car_num: str
+    pts: int
+    insurance: int

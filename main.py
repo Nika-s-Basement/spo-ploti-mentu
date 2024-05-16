@@ -1,12 +1,13 @@
 import re
-
 from fastapi import FastAPI, HTTPException
 from create_jwt import create_access_token, decode_token
 from dbxd.add import add_ment, add_user, add_car
 from dbxd.checkLogin import check_login_ment, check_login_user
 from dbxd.get_info import get_info_by_id, get_info_car
 from dbxd.paterns import email_pattern, car_number_pattern
+from dtp_logic.check import check_cars, check_users
 from models.CarModel import CarModel
+from models.DTOModel import DTP
 from models.UserModel import User
 from models.loginModel import Login
 from models.registerModel import lil_form
@@ -121,4 +122,12 @@ async def addcar(car: CarModel):
     if response is True:
         raise HTTPException(status_code=200, detail="Car successfully added")
     raise HTTPException(status_code=204, detail="No connect")
+
+
+@app.post("/add/dtp/")
+async def add_dtp(dtp: DTP):
+    if await check_cars(dtp.cars) == 0:
+        raise HTTPException(status_code=404, detail="No such car")
+    if await check_users(dtp.users) == 0:
+        raise HTTPException(status_code=404, detail="No such user")
 

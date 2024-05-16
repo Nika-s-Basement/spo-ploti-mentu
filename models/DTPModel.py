@@ -6,8 +6,8 @@ from models.UserModel import UserDtp
 
 
 class DTP(BaseModel):
+    describe: str
     cars: List[CarDtp]
-    users: List[UserDtp]
     address: str
     date: datetime
     photo: Optional[bytes] = None

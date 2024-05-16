@@ -43,7 +43,3 @@ async def get_info_car(id):
     finally:
         conn.close()
         cur.close()
-
-
-# print(get_info_by_id("users", ["*"], "243672423", "license"))
-print(get_info_car("a348пт777"))

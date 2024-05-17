@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import Optional, List
 from pydantic import BaseModel
 from models.CarModel import CarDtp
-from models.UserModel import UserDtp
 
 
 class DTP(BaseModel):

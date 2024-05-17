@@ -5,12 +5,13 @@ from fastapi import FastAPI, HTTPException
 from create_jwt import create_access_token, decode_token
 from dbxd.add import add_ment, add_user, add_car
 from dbxd.checkLogin import check_login_ment, check_login_user
-from dbxd.get_info import get_info_by_id, get_info_car
+from dbxd.get_info import get_info_by_id, get_info_car, get_dtp_data
 from dbxd.paterns import email_pattern, car_number_pattern
 from dtp_logic.AddToBd import add_dtp, add_elements
 from dtp_logic.check import check_cars, check_users
 from models.CarModel import CarModel
 from models.DTPModel import DTP
+from models.ModelGetDtp import GetDtp
 from models.UserModel import User
 from models.loginModel import Login
 from models.registerModel import lil_form
@@ -136,4 +137,14 @@ async def add_dtp_main(dtp: DTP):
     dtp_id = await add_dtp(dtp)
     if await add_elements(dtp.cars, dtp_id[0]) * dtp_id[0] == 1:
         raise HTTPException(status_code=200, detail="Successfully added")
+    raise HTTPException(status_code=400, detail="Bad request")
+
+
+@app.post("/get/dtp")
+async def get_dtp_app(dtp: GetDtp):
+    if decode_token(token=dtp.token)["rank"] in ["lil", "main", "user"]:
+        data = get_dtp_data(dtp.car_num)
+        if data in False:
+            raise HTTPException(status_code=404, detail="No such DTP")
+        return data
     raise HTTPException(status_code=400, detail="Bad request")

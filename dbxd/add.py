@@ -1,5 +1,4 @@
 import psycopg2
-
 from conn import connection
 from models.CarModel import CarModel
 from models.UserModel import User

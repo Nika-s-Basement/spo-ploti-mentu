@@ -34,6 +34,11 @@ async def ret_pin():
     return {"message": "We are in work"}
 
 
+@app.head("/")
+async def ret_pin():
+    return {}
+
+
 # login для всех ментов
 @app.post("/login/ment/")
 async def login(ment: Login):

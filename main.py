@@ -29,6 +29,11 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+async def ret_pin():
+    return {"message": "We are in work"}
+
+
 # login для всех ментов
 @app.post("/login/ment/")
 async def login(ment: Login):
@@ -168,7 +173,5 @@ async def get_dtp_app(dtp: GetDtp):
     raise HTTPException(status_code=400, detail="Bad request")
 
 
-if __name__ == '__main__':
-    uvicorn.run(app,
-                host='localhost',
-                port=8000)
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000)

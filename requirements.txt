@@ -1,0 +1,6 @@
+psycopg2~=2.9.9
+pydantic~=2.7.1
+python-dotenv~=1.0.1
+fastapi~=0.111.0
+starlette~=0.37.2
+PyJWT~=2.8.0

@@ -71,15 +71,15 @@ async def get_dtp_data(id):
         conn = psycopg2.connect(**connection)
         cur = conn.cursor()
         cur.execute('''SELECT address, "date", "describe", photo, cr.car_num, us.license
-        FROM accident_elements ae
+        FROM elements ae
         JOIN car cr ON ae.car_num = cr.car_num
         JOIN users us ON cr.id_user = us.license
         JOIN dtp ON ae.dtp_id = dtp.id
-        WHERE cr.car_num = %s''', (id,))
+        WHERE dtp.address = %s''', (id,))
         data = cur.fetchall()
         if len(data) == 0:
             return False
-        response = {"address": data[0][0], "date": data[0][1],
+        response = {"date": data[0][1],
                     "describe": data[0][2], "elements": [[row[4], row[5]] for row in data]}
         return response
     except (Exception, psycopg2.DatabaseError) as error:
@@ -87,3 +87,29 @@ async def get_dtp_data(id):
     finally:
         cur.close()
         conn.close()
+
+
+async def get_dtp_data_data(id):
+    cur = None
+    conn = None
+    try:
+        conn = psycopg2.connect(**connection)
+        cur = conn.cursor()
+        cur.execute('''SELECT address, "date", "describe", photo, cr.car_num, us.license
+        FROM elements ae
+        JOIN car cr ON ae.car_num = cr.car_num
+        JOIN users us ON cr.id_user = us.license
+        JOIN dtp ON ae.dtp_id = dtp.id
+        WHERE cr.car_num = %s''', (id,))
+        data = cur.fetchall()
+        if len(data) == 0:
+            return False
+        response = {"car_num": data[0][4],
+                    "license": data[0][5], "dtps": [[row[0], row[1], row[2], row[3]] for row in data]}
+        return response
+    except (Exception, psycopg2.DatabaseError) as error:
+        return {"message": error}
+    finally:
+        cur.close()
+        conn.close()
+

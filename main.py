@@ -1,14 +1,13 @@
 import re
-from typing import List
-
 from fastapi import FastAPI, HTTPException
+from starlette.middleware.cors import CORSMiddleware
 from create_jwt import create_access_token, decode_token
 from dbxd.add import add_ment, add_user, add_car
 from dbxd.checkLogin import check_login_ment, check_login_user
-from dbxd.get_info import get_info_by_id, get_info_car, get_dtp_data
+from dbxd.get_info import get_info_by_id, get_info_car, get_dtp_data, get_dtp_data_data
 from dbxd.paterns import email_pattern, car_number_pattern
 from dtp_logic.AddToBd import add_dtp, add_elements
-from dtp_logic.check import check_cars, check_users
+from dtp_logic.check import check_cars
 from models.CarModel import CarModel
 from models.DTPModel import DTP
 from models.ModelGetDtp import GetDtp
@@ -18,6 +17,15 @@ from models.registerModel import lil_form
 from models.useddataModel import userData
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Разрешает все источники
+    allow_credentials=True,
+    allow_methods=["*"],  # Разрешает все методы
+    allow_headers=["*"],  # Разрешает все заголовки
+)
 
 
 # login для всех ментов
@@ -132,19 +140,28 @@ async def addcar(car: CarModel):
 async def add_dtp_main(dtp: DTP):
     if await check_cars(dtp.cars) == 0:
         raise HTTPException(status_code=404, detail="No such car")
-    if await check_users(dtp.users) == 0:
-        raise HTTPException(status_code=404, detail="No such user")
     dtp_id = await add_dtp(dtp)
-    if await add_elements(dtp.cars, dtp_id[0]) * dtp_id[0] == 1:
+    if await add_elements(dtp.cars, dtp_id["id"]) * dtp_id["result"] == 1:
         raise HTTPException(status_code=200, detail="Successfully added")
     raise HTTPException(status_code=400, detail="Bad request")
 
 
-@app.post("/get/dtp")
+@app.post("/get/dtp/address/")
 async def get_dtp_app(dtp: GetDtp):
     if decode_token(token=dtp.token)["rank"] in ["lil", "main", "user"]:
-        data = get_dtp_data(dtp.car_num)
-        if data in False:
+        data = await get_dtp_data(dtp.address)
+        if data is False:
+            raise HTTPException(status_code=404, detail="No such DTP")
+        return data
+    raise HTTPException(status_code=400, detail="Bad request")
+
+
+@app.post("/get/dtp/car/num/")
+async def get_dtp_app(dtp: GetDtp):
+    if decode_token(token=dtp.token)["rank"] in ["lil", "main", "user"]:
+        print(dtp.car_num)
+        data = await get_dtp_data_data(dtp.car_num)
+        if data is False:
             raise HTTPException(status_code=404, detail="No such DTP")
         return data
     raise HTTPException(status_code=400, detail="Bad request")

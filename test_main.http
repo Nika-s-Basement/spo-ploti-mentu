@@ -56,6 +56,21 @@ Content-Type: application/json
   "password": "nfjunijnnbnwkj"
 }
 
+
+###
+
+
+POST http://127.0.0.1:8000/register/user/
+Content-Type: application/json
+
+{
+  "fio": "Кораковко А.В.",
+  "license": 24300023,
+  "card": 23432897273,
+  "email": "nohskv@mgni.com",
+  "password": "nfjunijfbnwkj"
+}
+
 ###
 
 POST http://127.0.0.1:8000/login/user/
@@ -64,6 +79,16 @@ Content-Type: application/json
 {
   "email": "noejv@mgni.com",
   "password": "nfjunijnnbnwkj"
+}
+
+###
+
+POST http://127.0.0.1:8000/login/user/
+Content-Type: application/json
+
+{
+  "email": "nohskv@mgni.com",
+  "password": "nfjuniымbnwkj"
 }
 
 ###
@@ -91,5 +116,64 @@ Content-Type: application/json
 
 ###
 
+POST http://127.0.0.1:8000/add/car/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzMDAwMjMsImZpbyI6Ilx1MDQxYVx1MDQzZVx1MDQ0MFx1MDQzMFx1MDQzYVx1MDQzZVx1MDQzMlx1MDQzYVx1MDQzZSBcdTA0MTAuXHUwNDEyLiIsImxpY2Vuc2UiOjIzNDMyODk3MjczLCJjYXJkIjpbIm5vaHNrdkBtZ25pLmNvbSJdLCJyYW5rIjoidXNlciIsImV4cCI6MTcxNjAxMjAwMH0.c1jCKqK_teSdcQX-EFOH_fSyzYoNH9wgCkUavCgUynA",
+  "car_num": "A348KE777",
+  "pts": 72343453248,
+  "insurance": 23743458734,
+  "id_user": 24300023
+}
+
+###
+
 GET http://127.0.0.1:8000/get/user/car/A348HT777
 Accept: application/json
+
+
+###
+
+POST http://127.0.0.1:8000/add/dtp/
+Content-Type: application/json
+
+{
+  "describe": "лобовое",
+  "cars": [
+    {
+      "license": 243672423,
+      "car_num": "A348HT777",
+      "pts": 7234863248,
+      "insurance": 2374798734
+    },
+    {
+      "license": 24300023,
+      "car_num": "A348KE777",
+      "pts": 72343453248,
+      "insurance": 23743458734
+    }],
+  "address": "Залупинск"
+}
+
+
+###
+
+POST http://127.0.0.1:8000/get/dtp/address/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzMDAwMjMsImZpbyI6Ilx1MDQxYVx1MDQzZVx1MDQ0MFx1MDQzMFx1MDQzYVx1MDQzZVx1MDQzMlx1MDQzYVx1MDQzZSBcdTA0MTAuXHUwNDEyLiIsImxpY2Vuc2UiOjIzNDMyODk3MjczLCJjYXJkIjpbIm5vaHNrdkBtZ25pLmNvbSJdLCJyYW5rIjoidXNlciIsImV4cCI6MTcxNjA2OTYwMH0.vhreLObISDyWTAvYOnrvLN14z7O59n7NPIuv87y_dAI",
+  "address": "Залупинск"
+}
+
+
+###
+
+POST http://127.0.0.1:8000/get/dtp/car/num/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzMDAwMjMsImZpbyI6Ilx1MDQxYVx1MDQzZVx1MDQ0MFx1MDQzMFx1MDQzYVx1MDQzZVx1MDQzMlx1MDQzYVx1MDQzZSBcdTA0MTAuXHUwNDEyLiIsImxpY2Vuc2UiOjIzNDMyODk3MjczLCJjYXJkIjpbIm5vaHNrdkBtZ25pLmNvbSJdLCJyYW5rIjoidXNlciIsImV4cCI6MTcxNjA2OTYwMH0.vhreLObISDyWTAvYOnrvLN14z7O59n7NPIuv87y_dAI",
+  "car_num": "A348KE777"
+}

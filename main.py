@@ -1,4 +1,5 @@
 import re
+import uvicorn
 from fastapi import FastAPI, HTTPException
 from starlette.middleware.cors import CORSMiddleware
 from create_jwt import create_access_token, decode_token
@@ -165,3 +166,9 @@ async def get_dtp_app(dtp: GetDtp):
             raise HTTPException(status_code=404, detail="No such DTP")
         return data
     raise HTTPException(status_code=400, detail="Bad request")
+
+
+if __name__ == '__main__':
+    uvicorn.run(app,
+                host='localhost',
+                port=8000)

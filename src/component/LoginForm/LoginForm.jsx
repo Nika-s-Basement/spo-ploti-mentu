@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styles from './LoginForm.module.css';
 import InputField from '../InputField/InputField';
 import Button from '../Button/Button';
@@ -16,7 +17,7 @@ const LoginForm = ({label}) => {
     e.preventDefault();
 
     // Проверка почты
-    const emailRegex = /^[^\s@]+@gibdd\.ru$/;
+    /*const emailRegex = /^[^\s@]+@gibdd\.ru$/;
     if (!emailRegex.test(email)) {
       setPopupMessage('Введите корректный адрес электронной почты, заканчивающийся на @gibdd.ru');
       setShowPopup(true);
@@ -24,13 +25,22 @@ const LoginForm = ({label}) => {
     }
 
     // Проверка пароля
-    if (password.length < 8) {
+    /*if (password.length < 8) {
       setPopupMessage('Пароль должен состоять из минимум 8 символов');
       setShowPopup(true);
       return;
-    }
+    }*/
 
-    // TODO: Handle login logic
+    axios.post('https://spo-ploti-mentu.onrender.com/login/ment/', {
+      email: email,
+      password: password
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
     navigate('/main');
   };

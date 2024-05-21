@@ -3,6 +3,7 @@ import Layout from '../../component/FrontBackReq/Layout';
 import './MainPage.css';
 import Dropdown from '../../component/Dropdown/Dropdown';
 import LoginForm from '../../component/LoginForm/LoginForm';
+import RegisterForm from '../../component/RegisterForm/RegisterForm';
 import ChartComp from '../../component/Chart/Chart';
 import DTPForm from '../../component/AddDTP/AddDTP'
 import DtpList from '../../component/ListDTP/ListDTP';
@@ -69,11 +70,11 @@ const MainPage = () => (
             Добро пожаловать, товарищ!
         </h1>
         <Dropdown label="Регистрация ЛилМента">
-            <LoginForm label='Sign up' />
+            <RegisterForm label='Sign up' />
         </Dropdown>
         <Dropdown label="Умная Мысль">
             <h1>
-                Какаой-о умный текст
+                Какаой-то умный текст
             </h1>
         </Dropdown>
         <Dropdown label="Статистика по ДТП">

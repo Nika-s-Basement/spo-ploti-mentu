@@ -8,6 +8,8 @@ import ChartComp from '../../component/Chart/Chart';
 import DTPForm from '../../component/AddDTP/AddDTP'
 import DtpList from '../../component/ListDTP/ListDTP';
 
+const fio = localStorage.getItem('mentFio');
+
 const dtps = [
     {
         id: 1,
@@ -67,7 +69,7 @@ const options = {
 const MainPage = () => (
     <Layout>
         <h1>
-            Добро пожаловать, товарищ!
+            Добро пожаловать, {fio}!
         </h1>
         <Dropdown label="Регистрация ЛилМента">
             <RegisterForm label='Sign up' />

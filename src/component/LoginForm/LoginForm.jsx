@@ -25,7 +25,7 @@ const LoginForm = ({label}) => {
     }
 
     // Проверка пароля
-    /*if (password.length < 8) {
+    if (password.length < 8) {
       setPopupMessage('Пароль должен состоять из минимум 8 символов');
       setShowPopup(true);
       return;
@@ -37,6 +37,10 @@ const LoginForm = ({label}) => {
     })
     .then(function (response) {
       console.log(response);
+      const token = response.data.token;
+      const fio = response.data.fio;
+      localStorage.setItem('mentToken', token);
+      localStorage.setItem('mentFio', fio)
     })
     .catch(function (error) {
       console.log(error);

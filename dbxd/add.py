@@ -16,7 +16,7 @@ async def add_ment(form: lil_form):
         cur.execute('''INSERT INTO lil_ment (id, fio, rank, experience, age, dep_id, email, password)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''', data)
         conn.commit()
-        return {"message": "Successfully added ment"}
+        return True
     except (Exception, psycopg2.DatabaseError) as error:
         return {"message": {error}}
     finally:

@@ -63,9 +63,8 @@ async def register(ment: lil_form):
         print(rank)
         if rank in ["майор", "main"]:
             response = await add_ment(ment)
-            if response is 'Successfully added ment':
+            if response is True:
                 raise HTTPException(status_code=200, detail="Successfully registered")
-            raise HTTPException(status_code=409, detail=f"{response}")
         raise HTTPException(status_code=403, detail="No access right")
     raise HTTPException(status_code=409, detail="Ment already registered")
 

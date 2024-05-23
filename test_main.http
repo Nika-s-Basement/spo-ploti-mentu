@@ -16,14 +16,14 @@ Content-Type: application/json
 
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpZG9yYXNAZ21haWwuY29tIiwicmFuayI6Ilx1MDQzY1x1MDQzMFx1MDQzOVx1MDQzZVx1MDQ0MCIsImRlcF9pZCI6MSwiZXhwIjoxNzE2NTAxNjAwfQ.fidYh5LlQnw0XVkI2q9IBymgYzxjUaf8pY1jfre3U7g",
-    "id": 8,
-    "fio": "Диbgор Д.Р.",
+    "id": 10,
+    "fio": "Диbnfvор Д.Р.",
     "rank": "lil",
     "experience": 7,
     "age": 29,
     "dep_id": 1,
-    "email": "vytugy@gmail.com",
-    "password": "сосузаvhjvhвзтку"
+    "email": "vytunv@gmail.com",
+    "password": "сосnvаvhjvhвзтку"
 }
 
 

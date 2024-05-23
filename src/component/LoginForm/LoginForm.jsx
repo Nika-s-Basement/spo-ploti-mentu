@@ -14,6 +14,8 @@ const LoginForm = ({label}) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
+    localStorage.removeItem('mentToken');
+    localStorage.removeItem('mentFio');
     e.preventDefault();
 
     // Проверка почты
@@ -41,9 +43,15 @@ const LoginForm = ({label}) => {
       const fio = response.data.fio;
       localStorage.setItem('mentToken', token);
       localStorage.setItem('mentFio', fio)
+
+      window.location.reload();
+
+
     })
     .catch(function (error) {
       console.log(error);
+      setPopupMessage('Ошибка при входе. Проверьте ваши данные и попробуйте снова.');
+      setShowPopup(true);
     });
 
     navigate('/main');

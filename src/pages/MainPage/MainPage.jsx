@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../../component/FrontBackReq/Layout';
 import './MainPage.css';
 import Dropdown from '../../component/Dropdown/Dropdown';
@@ -34,61 +34,51 @@ const dtps = [
     }
 ];
 
-
-/*const getDistrictCounts = (dtps) => {
-    const districtCounts = {};
-
-    dtps.forEach((dtp) => {
-        if (dtp.district) {
-            districtCounts[dtp.district] = (districtCounts[dtp.district] || 0) + 1;
-        }
-    });
-
-    const data = Object.entries(districtCounts).map(([district, count]) => [
-        district,
-        count,
-    ]);
-
-    return data;
-};
-
-const data = getDistrictCounts(dtps);
-console.log(data);*/
-
 const data = [
     ['Район', 'Кол/во ДТП'],
     ['Бибирево', 2],
     ['Опалиха', 1]
-    ];
+];
 
 const options = {
     title: 'Дтп',
     pieHole: 1,
 };
 
-const MainPage = () => (
-    <Layout>
-        <h1>
-            Добро пожаловать, {fio}!
-        </h1>
-        <Dropdown label="Регистрация ЛилМента">
-            <RegisterForm label='Sign up' />
-        </Dropdown>
-        <Dropdown label="Умная Мысль">
+const MainPage = () => {
+    const isFirstLoad = !localStorage.getItem('isMainPageLoaded');
+
+  useEffect(() => {
+    if (isFirstLoad) {
+      localStorage.setItem('isMainPageLoaded', true);
+      window.location.reload();
+    }
+  }, [isFirstLoad]);
+
+    return (
+        <Layout>
             <h1>
-                Какаой-то умный текст
+                Добро пожаловать, {fio}!
             </h1>
-        </Dropdown>
-        <Dropdown label="Статистика по ДТП">
-            <ChartComp data={data} options={options} type="PieChart" />
-        </Dropdown>
-        <Dropdown label="Добавление ДТП">
-            <DTPForm />
-        </Dropdown>
-        <Dropdown label="Поиск ДТП">
-            <DtpList dtps={dtps} />
-        </Dropdown>
-    </Layout>
-)
+            <Dropdown label="Регистрация ЛилМента">
+                <RegisterForm label='Sign up' />
+            </Dropdown>
+            <Dropdown label="Умная Мысль">
+                <h1>
+                    Какаой-то умный текст
+                </h1>
+            </Dropdown>
+            <Dropdown label="Статистика по ДТП">
+                <ChartComp data={data} options={options} type="PieChart" />
+            </Dropdown>
+            <Dropdown label="Добавление ДТП">
+                <DTPForm />
+            </Dropdown>
+            <Dropdown label="Поиск ДТП">
+                <DtpList dtps={dtps} />
+            </Dropdown>
+        </Layout>
+    );
+};
 
 export default MainPage;

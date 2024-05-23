@@ -60,7 +60,7 @@ async def register(ment: lil_form):
     answer = await check_login_ment(ment.email, ment.password)
     if answer is False:
         rank = decode_token(token=ment.token)["rank"]
-        if rank == "майор":
+        if rank in ["майор", "main"]:
             response = await add_ment(ment)
             if response is True:
                 raise HTTPException(status_code=200, detail="Successfully registered")

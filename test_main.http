@@ -15,16 +15,15 @@ POST http://127.0.0.1:8000/register/lil/
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImViYWx2ZnNocm90QG1haWwucnUiLCJyYW5rIjoiXHUwNDNmXHUwNDNlXHUwNDNiXHUwNDNhXHUwNDNlXHUwNDMyXHUwNDNkXHUwNDM4XHUwNDNhIiwiZGVwX2lkIjoxLCJleHAiOjE3MTU1Mzc3Mjh9.tB_do6KdMb0dqyJZ6_7ON54ATxJjkw6UTx2XbdlGO48",
-    "id": 2,
-    "fio": "Дипор Д.Р.",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpZG9yYXNAZ21haWwuY29tIiwicmFuayI6Ilx1MDQzY1x1MDQzMFx1MDQzOVx1MDQzZVx1MDQ0MCIsImRlcF9pZCI6MSwiZXhwIjoxNzE2NTAxNjAwfQ.fidYh5LlQnw0XVkI2q9IBymgYzxjUaf8pY1jfre3U7g",
+    "id": 8,
+    "fio": "Диbgор Д.Р.",
     "rank": "lil",
     "experience": 7,
     "age": 29,
     "dep_id": 1,
-    "boss": 1,
-    "email": "pidoras@gmail.com",
-    "password": "сосузавзтку"
+    "email": "vytugy@gmail.com",
+    "password": "сосузаvhjvhвзтку"
 }
 
 

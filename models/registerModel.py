@@ -9,7 +9,6 @@ class lil_form(BaseModel):
     experience: int
     age: int
     dep_id: int
-    boss: int
     email: str
     password: str
 

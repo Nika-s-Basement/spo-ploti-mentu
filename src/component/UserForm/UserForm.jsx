@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from './LoginForm.module.css';
+import styles from './UserForm.module.css';
 import InputField from '../InputField/InputField';
 import Button from '../Button/Button';
 import Popup from '../Popup/Popup';
 import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({ label }) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPopup, setShowPopup] = useState(false);
@@ -14,13 +14,12 @@ const LoginForm = ({ label }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
     // Проверка почты
-    const emailRegex = /^[^\s@]+@gibdd\.ru$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setPopupMessage('Введите корректный адрес электронной почты, заканчивающийся на @gibdd.ru');
+      setPopupMessage('Введите корректный адрес электронной почты');
       setShowPopup(true);
       return;
     }
@@ -32,7 +31,8 @@ const LoginForm = ({ label }) => {
       return;
     }
 
-    axios.post('https://spo-ploti-mentu.onrender.com/login/ment/', {
+    // Отправка запроса на сервер
+    axios.post('https://spo-ploti-mentu.onrender.com/login/user/', {
       email: email,
       password: password
     })
@@ -40,8 +40,8 @@ const LoginForm = ({ label }) => {
         console.log(response);
         const token = response.data.token;
         const fio = response.data.fio;
-        localStorage.setItem('mentToken', token);
-        localStorage.setItem('mentFio', fio);
+        localStorage.setItem('userToken', token);
+        localStorage.setItem('userFio', fio);
         navigate('/main');
       })
       .catch(function (error) {
@@ -50,7 +50,6 @@ const LoginForm = ({ label }) => {
         setShowPopup(true);
       });
   };
-
 
   const closePopup = () => {
     setShowPopup(false);
@@ -63,7 +62,7 @@ const LoginForm = ({ label }) => {
           id="email"
           label="Почта"
           type="email"
-          placeholder="example@gibdd.ru"
+          placeholder="example@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           for="email"
@@ -79,7 +78,7 @@ const LoginForm = ({ label }) => {
           for="password"
           autoComplete="current-password"
         />
-        <Button onClick={handleSubmit}>{label}</Button>
+        <Button onClick={handleSubmit}>Войти</Button>
       </form>
       {showPopup && <Popup message={popupMessage} onClose={closePopup} />}
     </>

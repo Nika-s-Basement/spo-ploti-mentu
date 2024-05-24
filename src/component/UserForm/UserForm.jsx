@@ -39,9 +39,10 @@ const LoginForm = () => {
       .then(function (response) {
         console.log(response);
         const token = response.data.token;
-        const fio = response.data.fio;
+        const fio = response.data.data.fio;
         localStorage.setItem('userToken', token);
         localStorage.setItem('userFio', fio);
+        localStorage.setItem('userType', 'vodila');
         navigate('/main');
       })
       .catch(function (error) {

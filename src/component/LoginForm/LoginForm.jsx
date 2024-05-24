@@ -40,8 +40,9 @@ const LoginForm = ({ label }) => {
         console.log(response);
         const token = response.data.token;
         const fio = response.data.fio;
-        localStorage.setItem('mentToken', token);
-        localStorage.setItem('mentFio', fio);
+        localStorage.setItem('userToken', token);
+        localStorage.setItem('userFio', fio);
+        localStorage.setItem('userType', 'ment');
         navigate('/main');
       })
       .catch(function (error) {

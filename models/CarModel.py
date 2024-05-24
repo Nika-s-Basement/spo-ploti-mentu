@@ -12,5 +12,3 @@ class CarModel(BaseModel):
 class CarDtp(BaseModel):
     license: int
     car_num: str
-    pts: int
-    insurance: int

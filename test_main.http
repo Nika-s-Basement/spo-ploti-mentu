@@ -142,15 +142,7 @@ Content-Type: application/json
   "cars": [
     {
       "license": 243672423,
-      "car_num": "A348HT777",
-      "pts": 7234863248,
-      "insurance": 2374798734
-    },
-    {
-      "license": 24300023,
-      "car_num": "A348KE777",
-      "pts": 72343453248,
-      "insurance": 23743458734
+      "car_num": "A666AA667"
     }],
   "address": "Залупинск"
 }

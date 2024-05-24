@@ -35,7 +35,7 @@ async def check_login_user(email, password):
         data = cur.fetchone()
         if data is None:
             return False
-        return {"id": data[0], "fio": data[1], "license": data[2], "card": [data[3]]}
+        return {"license": data[0], "fio": data[1], "card": [data[3]]}
     except (Exception, psycopg2.DatabaseError) as error:
         return {"Error": error}
     finally:

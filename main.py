@@ -118,7 +118,7 @@ async def login(user: Login):
 # Получить данные user по лицензии (только мент)
 @app.post("/get/user/data")
 async def userdata(user: userData):
-    if decode_token(token=user.token)["rank"] in ["lil", "майор"]:
+    if decode_token(token=user.token)["rank"] in ["lil", "main"]:
         return await get_info_by_id("users", ["license", "fio", "card", "email"], user.license, "license")
     raise HTTPException(status_code=403, detail="No access right")
 

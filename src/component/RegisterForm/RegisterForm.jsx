@@ -7,7 +7,6 @@ import axios from 'axios';
 const RegisterForm = ({ label }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
   const [id, setId] = useState(0);
   const [fio, setFio] = useState('');
   const [rank, setRank] = useState('');

@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../component/FrontBackReq/Layout';
 import './MainPage.css';
 import Dropdown from '../../component/Dropdown/Dropdown';
-import LoginForm from '../../component/LoginForm/LoginForm';
+import CarForm from '../../component/AddCar/AddCar';
 import RegisterForm from '../../component/RegisterForm/RegisterForm';
 import ChartComp from '../../component/Chart/Chart';
 import DTPForm from '../../component/AddDTP/AddDTP'
 import DtpList from '../../component/ListDTP/ListDTP';
 
-const fio = localStorage.getItem('mentFio');
 
 const dtps = [
     {
@@ -46,14 +45,22 @@ const options = {
 };
 
 const MainPage = () => {
-    const isFirstLoad = !localStorage.getItem('isMainPageLoaded');
+    const [fio, setFio] = useState('');
+    const [token, setToken] = useState('');
 
-  useEffect(() => {
-    if (isFirstLoad) {
-      localStorage.setItem('isMainPageLoaded', true);
-      window.location.reload();
-    }
-  }, [isFirstLoad]);
+    useEffect(() => {
+      const storedFio = localStorage.getItem('mentFio');
+      if (storedFio) {
+        setFio(storedFio);
+      }
+    }, []);
+    useEffect(() => {
+        const storedToken = localStorage.getItem('mentToken');
+        if (storedToken) {
+          setToken(storedToken);
+        }
+    },[])
+
 
     return (
         <Layout>
@@ -70,6 +77,9 @@ const MainPage = () => {
             </Dropdown>
             <Dropdown label="Статистика по ДТП">
                 <ChartComp data={data} options={options} type="PieChart" />
+            </Dropdown>
+            <Dropdown label="Добавить авто">
+                <CarForm label='Добавить'/>
             </Dropdown>
             <Dropdown label="Добавление ДТП">
                 <DTPForm />

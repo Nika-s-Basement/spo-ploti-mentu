@@ -4,7 +4,7 @@ import LoginForm from '../../component/LoginForm/LoginForm';
 
 const LoginPage = () => (
   <Layout>
-    <LoginForm label = 'Login'/>
+    <LoginForm label='Login' />
   </Layout>
 );
 

@@ -6,7 +6,8 @@ import Button from '../Button/Button';
 import Popup from '../Popup/Popup';
 import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({label}) => {
+
+const LoginForm = ({ label }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPopup, setShowPopup] = useState(false);
@@ -14,12 +15,11 @@ const LoginForm = ({label}) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    localStorage.removeItem('mentToken');
-    localStorage.removeItem('mentFio');
+
     e.preventDefault();
 
     // Проверка почты
-    /*const emailRegex = /^[^\s@]+@gibdd\.ru$/;
+    const emailRegex = /^[^\s@]+@gibdd\.ru$/;
     if (!emailRegex.test(email)) {
       setPopupMessage('Введите корректный адрес электронной почты, заканчивающийся на @gibdd.ru');
       setShowPopup(true);
@@ -31,31 +31,27 @@ const LoginForm = ({label}) => {
       setPopupMessage('Пароль должен состоять из минимум 8 символов');
       setShowPopup(true);
       return;
-    }*/
+    }
 
     axios.post('https://spo-ploti-mentu.onrender.com/login/ment/', {
       email: email,
       password: password
     })
-    .then(function (response) {
-      console.log(response);
-      const token = response.data.token;
-      const fio = response.data.fio;
-      localStorage.setItem('mentToken', token);
-      localStorage.setItem('mentFio', fio)
-
-      window.location.reload();
-
-
-    })
-    .catch(function (error) {
-      console.log(error);
-      setPopupMessage('Ошибка при входе. Проверьте ваши данные и попробуйте снова.');
-      setShowPopup(true);
-    });
-
-    navigate('/main');
+      .then(function (response) {
+        console.log(response);
+        const token = response.data.token;
+        const fio = response.data.fio;
+        localStorage.setItem('mentToken', token);
+        localStorage.setItem('mentFio', fio);
+        navigate('/main');
+      })
+      .catch(function (error) {
+        console.log(error);
+        setPopupMessage('Ошибка при входе. Проверьте ваши данные и попробуйте снова.');
+        setShowPopup(true);
+      });
   };
+
 
   const closePopup = () => {
     setShowPopup(false);

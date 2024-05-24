@@ -6,6 +6,7 @@ from starlette.middleware.cors import CORSMiddleware
 from create_jwt import create_access_token, decode_token
 from dbxd.add import add_ment, add_user, add_car
 from dbxd.checkLogin import check_login_ment, check_login_user
+from dbxd.gai.get_dai_id import get_gai_id, get_gai_all
 from dbxd.get_info import get_info_by_id, get_info_car, get_dtp_data, get_dtp_data_data
 from dbxd.paterns import email_pattern, car_number_pattern
 from dtp_logic.AddToBd import add_dtp, add_elements
@@ -72,9 +73,18 @@ async def register(ment: lil_form):
 # получение ГАИ по id
 @app.get("/get/gai/{id}")
 async def get_gai(id: int):
-    response = await get_info_by_id("menti_departments", ["address"], id)
+    response = await get_gai_id(id)
     if response is False:
         raise HTTPException(status_code=404, detail="No such gai")
+    return response
+
+
+@app.get("/get/all/gai")
+async def get_all_gai():
+    response = await get_gai_all()
+    if response is None:
+        raise HTTPException(status_code=404, detail="No such gai")
+    print(response)
     return response
 
 
@@ -84,7 +94,7 @@ async def det_ment(id: int):
     response = await get_info_by_id("lil_ment", ["fio", "rank", "dep_id", "email", "experience"], id)
     if response is False:
         raise HTTPException(status_code=404, detail="No such ment")
-    return response
+    return {"gai": response}
 
 
 # Регистрация user

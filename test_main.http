@@ -134,6 +134,13 @@ Accept: application/json
 
 ###
 
+
+GET http://127.0.0.1:8000/get/all/gai
+Accept: application/json
+
+
+###
+
 POST http://127.0.0.1:8000/add/dtp/
 Content-Type: application/json
 

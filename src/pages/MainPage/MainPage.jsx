@@ -67,28 +67,26 @@ const MainPage = () => {
             <h1>
                 Добро пожаловать, {fio}!
             </h1>
-            <div>
-                <Dropdown label="Регистрация ЛилМента">
-                    <RegisterForm label='Sign up' />
-                </Dropdown>
-                <Dropdown label="Умная Мысль">
-                    <h1>
-                        Какаой-то умный текст
-                    </h1>
-                </Dropdown>
-                <Dropdown label="Статистика по ДТП">
-                    <ChartComp data={data} options={options} type="PieChart" />
-                </Dropdown>
-                <Dropdown label="Добавить авто">
-                    <CarForm label='Добавить'/>
-                </Dropdown>
-                <Dropdown label="Добавление ДТП">
-                    <DTPForm />
-                </Dropdown>
-                <Dropdown label="Поиск ДТП">
-                    <DtpList dtps={dtps} />
-                </Dropdown>
-            </div>
+            <Dropdown label="Регистрация ЛилМента">
+                <RegisterForm label='Sign up' />
+            </Dropdown>
+            <Dropdown label="Умная Мысль">
+                <h1>
+                    Какаой-то умный текст
+                </h1>
+            </Dropdown>
+            <Dropdown label="Статистика по ДТП">
+                <ChartComp data={data} options={options} type="PieChart" />
+            </Dropdown>
+            <Dropdown label="Добавить авто">
+                <CarForm label='Добавить'/>
+            </Dropdown>
+            <Dropdown label="Добавление ДТП">
+                <DTPForm />
+            </Dropdown>
+            <Dropdown label="Поиск ДТП">
+                <DtpList dtps={dtps} />
+            </Dropdown>
         </Layout>
     );
 };

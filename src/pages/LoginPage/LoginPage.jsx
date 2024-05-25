@@ -5,9 +5,18 @@ import UserForm from '../../component/UserForm/UserForm';
 import UserReg from '../../component/UserReg/UserReg';
 import Button from '../../component/Button/Button';
 
+<<<<<<< HEAD
+
+const LoginPage = () => (
+  <Layout className="LoginPage">
+    <LoginForm label='Login' />
+  </Layout>
+);
+=======
 const LoginPage = () => {
   const [showUserForm, setShowUserForm] = useState(false);
   const [showUserReg, setShowUserReg] = useState(false);
+>>>>>>> 1fd96a4d4ad255234685de511e81b9c8dd9fe60a
 
   const handleDriverClick = () => {
     setShowUserForm(true);

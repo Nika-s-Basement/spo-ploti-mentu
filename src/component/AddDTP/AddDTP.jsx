@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import InputField from '../InputField/InputField';
 import styles from './AddDTP.module.css';
 import Button from '../Button/Button';
+import CarFormMini from '../AddCarMini/AddCarMini';
 
 const DtpForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [district, setdistrict] = useState('');
+    const [district, setDistrict] = useState('');
     const [images, setImages] = useState([]);
+    const [cars, setCars] = useState([]);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -25,14 +27,53 @@ const DtpForm = () => {
         setImages([...e.target.files]);
     };
 
-    const handleSubmit = (e) => {
+    const handleAddCar = (car) => {
+        setCars([...cars, car]);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // TODO: Handle form submission
+        // Создаем объект формы
+        const formData = new FormData();
+
+        // Добавляем поля в объект формы
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('district', district);
+        formData.append('date', new Date().toISOString()); // Текущая дата и время
+
+        // Добавляем изображения в объект формы
+        for (let i = 0; i < images.length; i++) {
+            formData.append(`images[${i}]`, images[i]);
+        }
+
+        // Добавляем массив автомобилей в объект формы
+        formData.append('cars', JSON.stringify(cars));
+
+        // Отправляем POST-запрос на сервер
+        const response = await fetch('https://spo-ploti-mentu.onrender.com/add/dtp/', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('mentToken')}`
+            },
+            body: formData
+        });
+
+        if (response.ok) {
+            // Данные успешно отправлены
+            console.log('Данные успешно отправлены');
+        } else {
+            // Ошибка при отправке данных
+            console.log('Ошибка при отправке данных');
+        }
     };
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
+            <Button>
+                Добавить авто
+            </Button>
             <InputField
                 label="Название:"
                 id="title"

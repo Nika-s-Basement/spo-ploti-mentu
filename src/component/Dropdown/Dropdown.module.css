@@ -1,9 +1,10 @@
 .dropdown {
     width: 90%;
-    background-color: aqua;
+    background-color: #b8b8b8;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    border: 1px solid #000;
 }
 
 .header {

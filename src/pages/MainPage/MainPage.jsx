@@ -47,29 +47,39 @@ const options = {
 const MainPage = () => {
     const [fio, setFio] = useState('');
     const [token, setToken] = useState('');
+    const [userType, setUserType] = useState('');
 
     useEffect(() => {
-      const storedFio = localStorage.getItem('mentFio');
-      if (storedFio) {
-        setFio(storedFio);
-      }
-    }, []);
-    useEffect(() => {
-        const storedToken = localStorage.getItem('mentToken');
-        if (storedToken) {
-          setToken(storedToken);
+        const storedFio = localStorage.getItem('userFio');
+        const storedUserType = localStorage.getItem('userType');
+        console.log(userType);
+
+        if (storedFio) {
+            setFio(storedFio);
         }
-    },[])
 
+        if (storedUserType) {
+            setUserType(storedUserType);
+        }
+    }, []);
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem('userToken');
+        if (storedToken) {
+            setToken(storedToken);
+        }
+    }, []);
 
     return (
         <Layout>
             <h1>
                 Добро пожаловать, {fio}!
             </h1>
-            <Dropdown label="Регистрация ЛилМента">
-                <RegisterForm label='Sign up' />
-            </Dropdown>
+            {userType === 'ment' && (
+                <Dropdown label="Регистрация ЛилМента">
+                    <RegisterForm label='Sign up' />
+                </Dropdown>
+            )}
             <Dropdown label="Умная Мысль">
                 <h1>
                     Какаой-то умный текст

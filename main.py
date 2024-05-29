@@ -164,7 +164,8 @@ async def add_dtp_main(dtp: DTP):
     if await check_cars(dtp.cars) is False:
         raise HTTPException(status_code=404, detail="No such car")
     dtp_id = await add_dtp(dtp)
-    if await add_elements(dtp.cars, dtp_id["id"]) * dtp_id["result"] is True:
+    add_elementi = await add_elements(dtp.cars, dtp_id["id"])
+    if add_elementi * dtp_id["result"] is True:
         raise HTTPException(status_code=200, detail="Successfully added")
     raise HTTPException(status_code=400, detail="Bad request")
 

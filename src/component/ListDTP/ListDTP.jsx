@@ -28,8 +28,8 @@ const DtpList = ({ dtps }) => {
             />
             {filteredDtps.map((dtp) => (
                 <div className={styles.dtp} key={dtp.id}>
-                    <h2 className={styles.title}>{dtp.title}</h2>
                     <p className={styles.description}>{dtp.description}</p>
+                    <p className={styles.description}>{dtp.car}</p>
                     <p className={styles.district}>Район: {dtp.district}</p>
                     {dtp.images.length > 0 ? (
                         <div className={styles.images}>

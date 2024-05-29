@@ -14,12 +14,14 @@ const dtps = [
         id: 1,
         title: 'ДТП на перекрестке',
         district: 'Опалиха',
+        car: 'O000OO000',
         description: 'Легковой автомобиль столкнулся с грузовиком на перекрестке. Пострадавших нет.',
         images: ['https://sun9-57.userapi.com/impf/NmO91j1cIK3SgImWoWRWxxHuwNPO6bJleEfZzA/nKxisbCYtFs.jpg?size=960x640&quality=96&sign=26949694e198cbf07af24d7be7b32626&c_uniq_tag=hlk64o3Ab_dFsXdxd2OTOAvfH_2InbdEEsQPfRhYP98&type=album']
     },
     {
         id: 2,
         title: 'Авария на трассе',
+        car: 'A111AA111',
         district: 'Бибирево',
         description: 'Автобус выехал на встречную полосу и столкнулся с легковым автомобилем. Есть пострадавшие.',
         images: []
@@ -28,6 +30,7 @@ const dtps = [
         id: 3,
         title: 'Столкновение на парковке',
         district: 'Бибирево',
+        car: 'B222BB222',
         description: 'Два легковых автомобиля столкнулись на парковке из-за невнимательности водителей. Пострадавших нет.',
         images: ['https://mercurynews.com/wp-content/uploads/2016/11/a15crash.jpg']
     }
@@ -80,11 +83,6 @@ const MainPage = () => {
                     <RegisterForm label='Sign up' />
                 </Dropdown>
             )}
-            <Dropdown label="Умная Мысль">
-                <h1>
-                    Какаой-то умный текст
-                </h1>
-            </Dropdown>
             <Dropdown label="Статистика по ДТП">
                 <ChartComp data={data} options={options} type="PieChart" />
             </Dropdown>

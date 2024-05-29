@@ -15,15 +15,15 @@ POST http://127.0.0.1:8000/register/lil/
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpZG9yYXNAZ21haWwuY29tIiwicmFuayI6Ilx1MDQzY1x1MDQzMFx1MDQzOVx1MDQzZVx1MDQ0MCIsImRlcF9pZCI6MSwiZXhwIjoxNzE2NTAxNjAwfQ.fidYh5LlQnw0XVkI2q9IBymgYzxjUaf8pY1jfre3U7g",
-    "id": 10,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpZG9yYXNAZ21haWwuY29tIiwicmFuayI6Ilx1MDQzY1x1MDQzMFx1MDQzOVx1MDQzZVx1MDQ0MCIsImRlcF9pZCI6MSwiZXhwIjoxNzE2Njc0NDAwfQ.VugYJ8O_IpBUVLc_e9guhMuXnoeZGyz_1HBKlPYkrUM",
+    "id": 1010,
     "fio": "Диbnfvор Д.Р.",
     "rank": "lil",
     "experience": 7,
     "age": 29,
     "dep_id": 1,
-    "email": "vytunv@gmail.com",
-    "password": "сосnvаvhjvhвзтку"
+    "email": "vyjsdksdcnv@gmail.com",
+    "password": "сосbshbjsdvhjvhвзтку"
 }
 
 

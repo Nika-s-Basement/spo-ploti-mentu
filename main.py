@@ -161,7 +161,7 @@ async def addcar(car: CarModel):
 
 @app.post("/add/dtp/")
 async def add_dtp_main(dtp: DTP):
-    if await check_cars(dtp.cars) == 0:
+    if await check_cars(dtp.cars) is False:
         raise HTTPException(status_code=404, detail="No such car")
     dtp_id = await add_dtp(dtp)
     if await add_elements(dtp.cars, dtp_id["id"]) * dtp_id["result"] == 1:

@@ -1,0 +1,12 @@
+main {
+    margin: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+.Button {
+    margin: auto;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+}

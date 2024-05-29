@@ -18,6 +18,13 @@ header {
     width: 98%;
 }
 
+main {
+    margin: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+
 footer {
     background-color: #333;
     color: #fff;

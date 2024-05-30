@@ -1,29 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../component/FrontBackReq/Layout';
 import styles from  './AboutPage.module.css';
 
 
-const AboutPage = () => {
-    function CampusList() {
-        const [campuses, setCampuses] = useState([]);
-        const [filter, setFilter] = useState('https://spo-ploti-mentu.onrender.com/get/all/gai');
+function AboutPage() {
+    const [campuses, setCampuses] = useState([]);
+    const [filter, setFilter] = useState('');
 
-        useEffect(() => {
-            // Получение всех кампусов из базы данных
-            fetch('')
-                .then(response => response.json())
-                .then(data => setCampuses(data));
-        }, []);
+    useEffect(() => {
+        // Получение всех кампусов из базы данных
+        fetch('https://spo-ploti-mentu.onrender.com/get/all/gai')
+            .then(response => response.json())
+            .then(data => setCampuses(data));
+    }, []);
 
-        function handleFilterChange(event) {
-            setFilter(event.target.value);
-        }
+    function handleFilterChange(event) {
+        setFilter(event.target.value);
+    }
 
-        function handleFilterSubmit(event) {
-            event.preventDefault();
-            // Фильтрация кампусов по заданному критерию
-            setCampuses(campuses.filter(campus => campus.name.includes(filter)));
-        }
+    function handleFilterSubmit(event) {
+        event.preventDefault();
+        // Фильтрация кампусов по заданному критерию
+        setCampuses(campuses.filter(campus => campus.name.includes(filter)));
     }
 
     return (
@@ -44,5 +42,6 @@ const AboutPage = () => {
         </Layout>
     )
 }
+
 
 export default AboutPage;

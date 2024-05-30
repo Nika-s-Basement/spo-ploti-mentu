@@ -33,7 +33,7 @@ const AddCarMini = ({ onAddCar }) => {
         onChange={(e) => setCarNum(e.target.value)}
         className={styles.addCarMiniInput}
       />
-      <Button className={styles.addCarMiniButton} onClick={handleAddCar}>Добавить еще</Button>
+      <Button className={styles.addCarMiniButton} onClick={handleAddCar}>Сохранить авто</Button>
     </div>
   );
 };

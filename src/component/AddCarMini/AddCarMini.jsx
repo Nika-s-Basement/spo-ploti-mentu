@@ -1,42 +1,40 @@
 import React, { useState } from 'react';
 import InputField from '../InputField/InputField';
 import styles from './AddCarMini.module.css';
-import Button from '../Button/Button';
+import Button from '../Button/Button'
 
 const AddCarMini = ({ onAddCar }) => {
   const [license, setLicense] = useState('');
-  const [car_num, setCar_num] = useState('');
+  const [carNum, setCarNum] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleAddCar = () => {
     const car = {
       license: license,
-      car_num: car_num,
+      car_num: carNum
     };
-
     onAddCar(car);
-
     setLicense('');
-    setCar_num('');
+    setCarNum('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className={styles.addCarMini}>
       <InputField
         label="Номер ТС"
-        type="number"
+        type="text"
         value={license}
         onChange={(e) => setLicense(e.target.value)}
+        className={styles.addCarMiniInput}
       />
       <InputField
         label="Гос. номер"
         type="text"
-        value={car_num}
-        onChange={(e) => setCar_num(e.target.value)}
+        value={carNum}
+        onChange={(e) => setCarNum(e.target.value)}
+        className={styles.addCarMiniInput}
       />
-      <Button type="submit">Добавить еще</Button>
-    </form>
+      <Button className={styles.addCarMiniButton} onClick={handleAddCar}>Добавить еще</Button>
+    </div>
   );
 };
 

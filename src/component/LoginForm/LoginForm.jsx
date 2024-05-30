@@ -18,7 +18,7 @@ const LoginForm = ({ label }) => {
     e.preventDefault();
 
     // Проверка почты
-    const emailRegex = /^[^\s@]+@gibdd\.ru$/;
+    /*const emailRegex = /^[^\s@]+@gibdd\.ru$/;
     if (!emailRegex.test(email)) {
       setPopupMessage('Введите корректный адрес электронной почты, заканчивающийся на @gibdd.ru');
       setShowPopup(true);
@@ -30,7 +30,7 @@ const LoginForm = ({ label }) => {
       setPopupMessage('Пароль должен состоять из минимум 8 символов');
       setShowPopup(true);
       return;
-    }
+    }*/
 
     axios.post('https://spo-ploti-mentu.onrender.com/login/ment/', {
       email: email,

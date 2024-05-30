@@ -61,26 +61,28 @@ const LoginForm = ({ label }) => {
     <>
       <form className={styles.loginForm} onSubmit={handleSubmit}>
         <InputField
-          id="email"
-          label="Почта"
-          type="email"
-          placeholder="example@gibdd.ru"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          for="email"
-          autoComplete="email"
+            id="email"
+            label="Почта"
+            type="email"
+            placeholder="example@gibdd.ru"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            for="email"
+            autoComplete="email"
         />
         <InputField
-          id="password"
-          label="Пароль"
-          type="password"
-          placeholder="********"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          for="password"
-          autoComplete="current-password"
+            id="password"
+            label="Пароль"
+            type="password"
+            placeholder="********"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            for="password"
+            autoComplete="current-password"
         />
-        <Button onClick={handleSubmit}>{label}</Button>
+        <div className={styles.Button}>
+          <Button onClick={handleSubmit}>{label}</Button>
+        </div>
       </form>
       {showPopup && <Popup message={popupMessage} onClose={closePopup} />}
     </>

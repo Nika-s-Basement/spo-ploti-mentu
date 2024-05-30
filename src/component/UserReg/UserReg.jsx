@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from './UserReg.module.css';
+import styles from "./UserReg.module.css";
 import InputField from '../InputField/InputField';
 import Button from '../Button/Button';
 import Popup from '../Popup/Popup';
@@ -132,7 +132,9 @@ const UserReg = () => {
           for="password"
           autoComplete="current-password"
         />
+        <div className={styles.button}>
         <Button onClick={handleSubmit}>Зарегистрироваться</Button>
+        </div>
       </form>
       {showPopup && <Popup message={popupMessage} onClose={closePopup} />}
     </>

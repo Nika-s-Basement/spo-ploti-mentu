@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from './UserForm.module.css';
+import styles from '../LoginForm/LoginForm.module.css';
 import InputField from '../InputField/InputField';
 import Button from '../Button/Button';
 import Popup from '../Popup/Popup';

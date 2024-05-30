@@ -1,12 +1,36 @@
 main {
-    margin: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
     justify-content: center;
-    align-content: center;
 }
 
 .Button {
-    margin: auto;
-    justify-self: center;
-    align-self: center;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
+    margin-top: 177px;
+    margin-left: 90px;
+    z-index: 1;
+}
+.bUttOn {
+    display: flex;
+    justify-content: center;
+}
+
+.BuTTon {
+    display: flex;
+    flex-direction: row;
+    margin-top: 245px;
+    width: 285px;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 490px;
+    z-index: 1;
 }

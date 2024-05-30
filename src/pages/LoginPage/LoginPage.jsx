@@ -31,29 +31,35 @@ const LoginPage = () => {
   };
 
   return (
-      <div className={styles.Button}>
         <Layout>
           {!showUserForm && !showUserReg && (
               <>
-                <LoginForm className={styles.Button} label = "Войти"/>
-                <Button className={styles.Button} onClick={handleDriverClick}>Войти как водитель</Button>
+                <LoginForm  label = "Войти"/>
+                <div className={styles.Button}>
+                <Button onClick={handleDriverClick}>Войти как водитель</Button>
+                </div>
               </>
           )}
           {showUserForm && (
               <>
-                <UserForm className={styles.Button} />
-                <Button className={styles.Button} onClick={handleMentorClick}>Войти как мент</Button>
-                <Button className={styles.Button} onClick={handleRegisterClick}>Зарегистрироваться</Button>
+                <UserForm  />
+                <div className={styles.bUttOn}>
+                <div className={styles.BuTTon}>
+                <Button  onClick={handleMentorClick}>Войти как мент</Button>
+                <Button  onClick={handleRegisterClick}>Зарегистрироваться</Button>
+                </div>
+                </div>
               </>
           )}
           {showUserReg && (
               <>
-                <UserReg className={styles.Button} />
-                <Button className={styles.Button} onClick={handleCancelRegister}>Отмена</Button>
+                <UserReg  />
+                <div className={styles.button}>
+                <Button  onClick={handleCancelRegister}>Отмена</Button>
+                </div>
               </>
           )}
         </Layout>
-      </div>
   );
 };
 

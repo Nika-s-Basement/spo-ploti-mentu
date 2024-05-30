@@ -24,8 +24,16 @@ function AboutPage() {
         setCampuses(campuses.filter(campus => campus.name.includes(filter)));
     }
 
-    return (
+    function formatData(data) {
+        return Object.entries(data).map(([key, value]) => {
+            if (value === null) {
+                value = 'недоступна';
+            }
+            return `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`;
+        }).join('\n');
+    }
 
+    return (
         <Layout>
             <div>
                 <form onSubmit={handleFilterSubmit}>
@@ -35,7 +43,11 @@ function AboutPage() {
                 </form>
                 <ul>
                     {campuses.map(campus => (
-                        <li key={campus.id}>{campus.name}</li>
+                        <li key={campus.id}>
+              <pre>
+                {formatData(campus)}
+              </pre>
+                        </li>
                     ))}
                 </ul>
             </div>

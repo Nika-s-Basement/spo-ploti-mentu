@@ -10,12 +10,12 @@ async def check_login_ment(email, password):
     try:
         conn = psycopg2.connect(**connection)
         curr = conn.cursor()
-        curr.execute('''SELECT email, rank, dep_id, fio FROM lil_ment 
+        curr.execute('''SELECT email, rank, dep_id, fio, id FROM lil_ment 
         WHERE email = %s and password = %s''', (email, password))
-        rows = curr.fetchone()
-        if rows is None:
+        row = curr.fetchone()
+        if row is None:
             return False
-        ret_data = [{"email": rows[0], "rank": rows[1], "dep_id": rows[2]}, rows[3]]
+        ret_data = [{"email": row[0], "rank": row[1], "dep_id": row[2], "id": row[4]}, row[3], row[4]]
         return ret_data
     except (Exception, psycopg2.DatabaseError) as error:
         return {"Error": error}

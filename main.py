@@ -1,7 +1,8 @@
 import os
 import re
+from typing import Annotated
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Header
 from starlette.middleware.cors import CORSMiddleware
 from create_jwt import create_access_token, decode_token
 from dbxd.add import add_ment, add_user, add_car
@@ -48,7 +49,7 @@ async def login(ment: Login):
         raise HTTPException(status_code=400, detail="Email is invalid")
     answer = await check_login_ment(ment.email, ment.password)
     if answer is not False:
-        response = {"fio": answer[1], "token": create_access_token(answer[0])}
+        response = {"fio": answer[1], "id": answer[2], "token": create_access_token(answer[0])}
         return response
     raise HTTPException(status_code=404, detail="No such ment")
 
@@ -121,7 +122,7 @@ async def login(user: Login):
         response["rank"] = "user"
         token = create_access_token(response)
         response.pop("rank")
-        return {"data": response, "token": token}
+        return {"data": response, "token": token, "id": response["license"]}
     raise HTTPException(status_code=404, detail="No such user")
 
 
@@ -160,7 +161,10 @@ async def addcar(car: CarModel):
 
 
 @app.post("/add/dtp/")
-async def add_dtp_main(dtp: DTP):
+async def add_dtp_main(dtp: DTP, token: Annotated[str | None, Header()] = None):
+    rank = decode_token(token=token)["rank"]
+    if rank not in ["lil", "main", "user"]:
+        raise HTTPException(status_code=403, detail="No access right")
     if await check_cars(dtp.cars) is False:
         raise HTTPException(status_code=404, detail="No such car")
     dtp_id = await add_dtp(dtp)

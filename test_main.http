@@ -149,7 +149,7 @@ Content-Type: application/json
   "cars": [
     {
       "license": 243672423,
-      "car_num": "A666AA667"
+      "car_num": "A686AA667"
     }],
   "address": "ПодЗаебатинск"
 }

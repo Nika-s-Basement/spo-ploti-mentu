@@ -145,13 +145,13 @@ POST http://127.0.0.1:8000/add/dtp/
 Content-Type: application/json
 
 {
-  "describe": "в борт",
+  "describe": "в рот",
   "cars": [
     {
       "license": 243672423,
       "car_num": "A666AA667"
     }],
-  "address": "Заебатинск"
+  "address": "ПодЗаебатинск"
 }
 
 

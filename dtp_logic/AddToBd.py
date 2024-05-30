@@ -18,7 +18,7 @@ async def add_dtp(dtp: DTP):
         conn.commit()
         return {"result": True, "id": id}
     except (Exception, psycopg2.Error) as error:
-        return {"error": error}
+        return {"error": error, "result": False}
     finally:
         cur.close()
         conn.close()
@@ -33,9 +33,9 @@ async def add_elements(cars: List[CarDtp], id):
         for car in cars:
             cur.execute('''INSERT INTO elements (car_num, dtp_id) VALUES (%s, %s)''', (car.car_num, id))
             conn.commit()
-        return True
+        return {"result": True, "error": False}
     except (Exception, psycopg2.DatabaseError) as error:
-        return {"message": error}
+        return {"result": False, "error": True, "message": error}
     finally:
         cur.close()
         conn.close()

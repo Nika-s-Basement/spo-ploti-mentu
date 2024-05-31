@@ -113,3 +113,23 @@ async def get_dtp_data_data(id):
         cur.close()
         conn.close()
 
+
+async def get_vse_dtp():
+    cur = None
+    conn = None
+    try:
+        conn = psycopg2.connect(**connection)
+        cur = conn.cursor()
+        cur.execute('''SELECT dtp.address, dtp.date, dtp.describe, array_agg(car.car_num) 
+        FROM elements el
+        JOIN dtp ON el.dtp_id = dtp.id
+        JOIN car ON el.car_num = car.car_num
+        GROUP BY dtp.address, dtp.date, dtp.describe''')
+        data = cur.fetchall()
+        response = [{"address": row[0], "date": row[1], "describe": row[2], "cars": [num for num in row[3]]} for row in data]
+        return response
+    except (Exception, psycopg2.DatabaseError) as error:
+        return {"message": error}
+    finally:
+        cur.close()
+        conn.close()

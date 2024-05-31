@@ -8,7 +8,7 @@ from create_jwt import create_access_token, decode_token
 from dbxd.add import add_ment, add_user, add_car
 from dbxd.checkLogin import check_login_ment, check_login_user
 from dbxd.gai.get_dai_id import get_gai_id, get_gai_all
-from dbxd.get_info import get_info_by_id, get_info_car, get_dtp_data, get_dtp_data_data
+from dbxd.get_info import get_info_by_id, get_info_car, get_dtp_data, get_dtp_data_data, get_vse_dtp
 from dbxd.paterns import email_pattern, car_number_pattern
 from dtp_logic.AddToBd import add_dtp, add_elements
 from dtp_logic.check import check_cars
@@ -177,25 +177,32 @@ async def add_dtp_main(dtp: DTP, authorization: Annotated[str | None, Header()] 
     raise HTTPException(status_code=400, detail="Bad request")
 
 
-@app.post("/get/dtp/address/")
-async def get_dtp_app(dtp: GetDtp):
-    if decode_token(token=dtp.token)["rank"] in ["lil", "main", "user"]:
-        data = await get_dtp_data(dtp.address)
+@app.get("/get/dtp/{address}")
+async def get_dtp_app(address, authorization: Annotated[str | None, Header()] = None):
+    if decode_token(token=authorization.split(" ")[1])["rank"] in ["lil", "main", "user"]:
+        data = await get_dtp_data(address)
         if data is False:
             raise HTTPException(status_code=404, detail="No such DTP")
         return data
     raise HTTPException(status_code=400, detail="Bad request")
 
 
-@app.post("/get/dtp/car/num/")
-async def get_dtp_app(dtp: GetDtp):
-    if decode_token(token=dtp.token)["rank"] in ["lil", "main", "user"]:
-        print(dtp.car_num)
-        data = await get_dtp_data_data(dtp.car_num)
+@app.get("/get/dtp/car/{num}")
+async def get_dtp_app(num, authorization: Annotated[str | None, Header()] = None):
+    if decode_token(token=authorization.split(" ")[1])["rank"] in ["lil", "main", "user"]:
+        data = await get_dtp_data_data(num)
         if data is False:
             raise HTTPException(status_code=404, detail="No such DTP")
         return data
-    raise HTTPException(status_code=400, detail="Bad request")
+    raise HTTPException(status_code=401, detail="Not authorised")
+
+
+@app.get("/get/all/dtp")
+async def get_all_dtp(authorization: Annotated[str | None, Header()] = None):
+    if decode_token(token=authorization.split(" ")[1])["rank"] in ["lil", "main", "user"]:
+        data = await get_vse_dtp()
+        return data
+    raise HTTPException(status_code=401, detail="Not authorized")
 
 
 if __name__ == "__main__":

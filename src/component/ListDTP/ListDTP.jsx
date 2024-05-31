@@ -10,11 +10,10 @@ const DtpList = ({ dtps }) => {
     };
 
     const filteredDtps = dtps.filter((dtp) =>
-        (dtp.title && dtp.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (dtp.description && dtp.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (dtp.district && dtp.district.toLowerCase().includes(searchTerm.toLowerCase()))
+        (dtp.describe && dtp.describe.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (dtp.address && dtp.address.toLowerCase().includes(searchTerm.toLowerCase()))
       );
-      
+
     return (
         <div className={styles.container}>
             <InputField
@@ -28,23 +27,9 @@ const DtpList = ({ dtps }) => {
             />
             {filteredDtps.map((dtp) => (
                 <div className={styles.dtp} key={dtp.id}>
-                    <p className={styles.description}>{dtp.description}</p>
-                    <p className={styles.description}>{dtp.car}</p>
-                    <p className={styles.district}>Район: {dtp.district}</p>
-                    {dtp.images.length > 0 ? (
-                        <div className={styles.images}>
-                            {dtp.images.map((image, index) => (
-                                <img
-                                    className={styles.image}
-                                    src={image}
-                                    alt={`Image ${index + 1}`}
-                                    key={index}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <p className={styles.noImages}>Фотографий нет</p>
-                    )}
+                    <p className={styles.description}>{dtp.describe}</p>
+                    <p className={styles.car}>{dtp.cars.join(', ')}</p>
+                    <p className={styles.district}>Адрес: {dtp.address}</p>
                 </div>
             ))}
         </div>

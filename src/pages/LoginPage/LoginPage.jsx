@@ -32,6 +32,8 @@ const LoginPage = () => {
 
   useEffect(() => {
     localStorage.removeItem('userToken');
+    localStorage.removeItem('userFio');
+    localStorage.removeItem('userType');
     console.log('data deleted')
   }, []);
 

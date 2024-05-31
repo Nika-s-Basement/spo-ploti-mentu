@@ -9,9 +9,9 @@ const Header = () => (
       </div>
       <nav>
           <ul>
-              <li><a href="/about">Главная</a></li>
-        <li><a href="/">Список ГИБДД</a></li>
-        <li><a href="/contact">Выйти</a></li>
+              <li><a href="/main">Главная</a></li>
+        <li><a href="/about">Список ГИБДД</a></li>
+        <li><a href="/">Выйти</a></li>
       </ul>
     </nav>
   </header>

@@ -18,7 +18,7 @@ const RegisterForm = ({ label }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem('mentToken');
+    const token = localStorage.getItem('userToken');
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
     axios.post('https://spo-ploti-mentu.onrender.com/register/lil/', {

@@ -14,7 +14,6 @@ const LoginForm = ({ label }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
     // Проверка почты
@@ -43,6 +42,7 @@ const LoginForm = ({ label }) => {
         localStorage.setItem('userToken', token);
         localStorage.setItem('userFio', fio);
         localStorage.setItem('userType', 'ment');
+        console.log('data saved')
         navigate('/main');
       })
       .catch(function (error) {

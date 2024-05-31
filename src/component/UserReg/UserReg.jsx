@@ -27,7 +27,7 @@ const UserReg = () => {
     }
 
     // Проверка номера водительского удостоверения
-    if (license.length !== 10) {
+    /*if (license.length !== 10) {
       setPopupMessage('Номер водительского удостоверения должен состоять из 10 символов');
       setShowPopup(true);
       return;
@@ -38,7 +38,7 @@ const UserReg = () => {
       setPopupMessage('Номер банковской карты должен состоять из 16 символов');
       setShowPopup(true);
       return;
-    }
+    }*/
 
     // Проверка почты
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

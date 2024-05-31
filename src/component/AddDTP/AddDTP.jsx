@@ -22,13 +22,17 @@ const AddDtp = () => {
       date: date,
       photo: photo
     };
+    
+    const token = localStorage.getItem('userToken');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    try {
-      const response = await axios.post('https://spo-ploti-mentu.onrender.com/add/dtp/', data);
+    axios.post('https://spo-ploti-mentu.onrender.com/add/dtp/', data)
+    .then(function (response) {
       console.log(response);
-    } catch (error) {
+    })
+    .catch(function (error) {
       console.error(error);
-    }
+    });
   };
 
   const handleAddCar = (car) => {

@@ -22,7 +22,7 @@ const AddCarMini = ({ onAddCar }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div onSubmit={handleSubmit}>
       <InputField
         label="Номер ТС"
         type="number"
@@ -35,8 +35,8 @@ const AddCarMini = ({ onAddCar }) => {
         value={car_num}
         onChange={(e) => setCar_num(e.target.value)}
       />
-      <Button type="submit">Добавить еще</Button>
-    </form>
+      <Button className={styles.addCarMiniButton} onClick={handleSubmit}>Сохранить авто</Button>
+    </div>
   );
 };
 

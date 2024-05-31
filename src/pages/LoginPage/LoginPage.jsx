@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../component/FrontBackReq/Layout';
 import LoginForm from '../../component/LoginForm/LoginForm';
 import UserForm from '../../component/UserForm/UserForm';
@@ -30,36 +30,41 @@ const LoginPage = () => {
     setShowUserReg(false);
   };
 
+  useEffect(() => {
+    localStorage.removeItem('userToken');
+    console.log('data deleted')
+  }, []);
+
   return (
-        <Layout>
-          {!showUserForm && !showUserReg && (
-              <>
-                <LoginForm  label = "Войти"/>
-                <div className={styles.Button}>
-                <Button onClick={handleDriverClick}>Войти как водитель</Button>
-                </div>
-              </>
-          )}
-          {showUserForm && (
-              <>
-                <UserForm  />
-                <div className={styles.bUttOn}>
-                <div className={styles.BuTTon}>
-                <Button  onClick={handleMentorClick}>Войти как мент</Button>
-                <Button  onClick={handleRegisterClick}>Зарегистрироваться</Button>
-                </div>
-                </div>
-              </>
-          )}
-          {showUserReg && (
-              <>
-                <UserReg  />
-                <div className={styles.button}>
-                <Button  onClick={handleCancelRegister}>Отмена</Button>
-                </div>
-              </>
-          )}
-        </Layout>
+    <Layout>
+      {!showUserForm && !showUserReg && (
+        <>
+          <LoginForm label="Войти" />
+          <div className={styles.Button}>
+            <Button onClick={handleDriverClick}>Войти как водитель</Button>
+          </div>
+        </>
+      )}
+      {showUserForm && (
+        <>
+          <UserForm />
+          <div className={styles.bUttOn}>
+            <div className={styles.BuTTon}>
+              <Button onClick={handleMentorClick}>Войти как мент</Button>
+              <Button onClick={handleRegisterClick}>Зарегистрироваться</Button>
+            </div>
+          </div>
+        </>
+      )}
+      {showUserReg && (
+        <>
+          <UserReg />
+          <div className={styles.button}>
+            <Button onClick={handleCancelRegister}>Отмена</Button>
+          </div>
+        </>
+      )}
+    </Layout>
   );
 };
 

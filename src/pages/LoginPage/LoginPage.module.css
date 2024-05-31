@@ -9,8 +9,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 176px;
-    margin-left: 90px;
+    margin-top: 250px;
     z-index: 1;
 }
 .bUttOn {

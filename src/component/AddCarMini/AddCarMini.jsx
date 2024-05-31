@@ -35,7 +35,7 @@ const AddCarMini = ({ onAddCar }) => {
         value={car_num}
         onChange={(e) => setCar_num(e.target.value)}
       />
-      <Button type="submit">Добавить еще</Button>
+      <Button>Добавить еще</Button>
     </form>
   );
 };

@@ -25,32 +25,47 @@ function AboutPage() {
     }
 
     function formatData(data) {
-        return Object.entries(data).map(([key, value]) => {
-            if (value === null) {
-                value = 'недоступна';
-            }
-            return `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`;
-        }).join('\n');
+        const listItems = Object.entries(data)
+            .filter(([key, value]) => key !== 'photo' && value !== null) // отфильтровываем значения null и ключ 'photo'
+            .map(([key, value]) => (
+                <React.Fragment key={key}>
+                    <dt>{key.charAt(0).toUpperCase() + key.slice(1)}:</dt>
+                    <dd>{value}</dd>
+                </React.Fragment>
+            ));
+
+        return (
+            <React.Fragment>
+                <div className="campus-photo">{/* добавляем div с фотографией */}
+                    <img src="../../../src/assets/image.png" alt={`Фотография ${data.name}`} />
+                </div>
+                <dl>{listItems}</dl>{/* добавляем список с данными */}
+            </React.Fragment>
+        );
     }
+
 
     return (
         <Layout>
-            <div>
-                <form onSubmit={handleFilterSubmit}>
+            <h1>Список ГИБДД</h1>
+            <>
+                <form className={styles.form} onSubmit={handleFilterSubmit}>
                     <label htmlFor="filter-input">Filter by name:</label>
                     <input type="text" id="filter-input" value={filter} onChange={handleFilterChange}/>
                     <button type="submit">Filter</button>
                 </form>
-                <ul>
+                <div className={styles.Spisok}>
+                <ul className={styles.nav}>
                     {campuses.map(campus => (
-                        <li key={campus.id}>
-              <pre>
+                        <li key={campus.id} className={styles.li}>
+              <pre className={styles.format}>
                 {formatData(campus)}
               </pre>
                         </li>
                     ))}
                 </ul>
-            </div>
+                </div>
+            </>
         </Layout>
     )
 }

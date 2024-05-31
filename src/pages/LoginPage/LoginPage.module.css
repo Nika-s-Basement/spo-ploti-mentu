@@ -9,7 +9,7 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 177px;
+    margin-top: 176px;
     margin-left: 90px;
     z-index: 1;
 }

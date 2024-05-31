@@ -49,27 +49,19 @@ const options = {
 
 const MainPage = () => {
     const [fio, setFio] = useState('');
-    const [token, setToken] = useState('');
     const [userType, setUserType] = useState('');
 
     useEffect(() => {
-        const storedFio = localStorage.getItem('userFio');
-        const storedUserType = localStorage.getItem('userType');
+        const fio = localStorage.getItem('userFio');
+        const UserType = localStorage.getItem('userType');
         console.log(userType);
 
-        if (storedFio) {
-            setFio(storedFio);
+        if (fio) {
+            setFio(fio);
         }
 
-        if (storedUserType) {
-            setUserType(storedUserType);
-        }
-    }, []);
-
-    useEffect(() => {
-        const storedToken = localStorage.getItem('userToken');
-        if (storedToken) {
-            setToken(storedToken);
+        if (UserType) {
+            setUserType(UserType);
         }
     }, []);
 

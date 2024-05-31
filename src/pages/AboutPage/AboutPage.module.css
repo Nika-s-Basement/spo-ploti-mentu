@@ -10,6 +10,10 @@
 
 .nav {
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .campus-photo {
@@ -27,4 +31,12 @@
     border: 1px solid #000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 15px;
+    width: 450px;
+}
+
+@media (max-width: 768px) {
+    .Spisok {
+        display: flex;
+        justify-content: center;
+    }
 }

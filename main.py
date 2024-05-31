@@ -161,8 +161,8 @@ async def addcar(car: CarModel):
 
 
 @app.post("/add/dtp/")
-async def add_dtp_main(dtp: DTP, token: Annotated[str | None, Header()] = None):
-    rank = decode_token(token=token)["rank"]
+async def add_dtp_main(dtp: DTP, authorization: Annotated[str | None, Header()] = None):
+    rank = decode_token(token=authorization)["rank"]
     if rank not in ["lil", "main", "user"]:
         raise HTTPException(status_code=403, detail="No access right")
     if await check_cars(dtp.cars) is False:

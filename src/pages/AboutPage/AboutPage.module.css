@@ -1,3 +1,9 @@
+.PageAbout {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
 .form {
     display: flex;
     justify-content: center;

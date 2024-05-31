@@ -9,18 +9,23 @@
     width: 100%;
     max-width: 300px;
     margin-bottom: 10px;
-  }
+}
 
-  .label {
+.label {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
-  }
-  
-  .input {
+}
+
+.input {
     padding: 10px;
     font-size: 16px;
     border: 4px solid #ffffff;
     border-radius: 4px;
     margin-bottom: 20px;
-  }
+}
+
+.addCarMiniButton {
+    display: flex;
+    justify-content: center;
+}

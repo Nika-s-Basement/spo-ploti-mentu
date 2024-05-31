@@ -179,7 +179,8 @@ async def add_dtp_main(dtp: DTP, authorization: Annotated[str | None, Header()] 
 
 @app.get("/get/dtp/{address}")
 async def get_dtp_app(address, authorization: Annotated[str | None, Header()] = None):
-    if decode_token(token=authorization.split(" ")[1])["rank"] in ["lil", "main", "user"]:
+    rank = decode_token(token=authorization.split(" ")[1])["rank"]
+    if rank in ["lil", "main", "user"]:
         data = await get_dtp_data(address)
         if data is False:
             raise HTTPException(status_code=404, detail="No such DTP")
@@ -189,7 +190,8 @@ async def get_dtp_app(address, authorization: Annotated[str | None, Header()] = 
 
 @app.get("/get/dtp/car/{num}")
 async def get_dtp_app(num, authorization: Annotated[str | None, Header()] = None):
-    if decode_token(token=authorization.split(" ")[1])["rank"] in ["lil", "main", "user"]:
+    rank = decode_token(token=authorization.split(" ")[1])["rank"]
+    if rank in ["lil", "main", "user"]:
         data = await get_dtp_data_data(num)
         if data is False:
             raise HTTPException(status_code=404, detail="No such DTP")
@@ -199,7 +201,8 @@ async def get_dtp_app(num, authorization: Annotated[str | None, Header()] = None
 
 @app.get("/get/all/dtp")
 async def get_all_dtp(authorization: Annotated[str | None, Header()] = None):
-    if decode_token(token=authorization.split(" ")[1])["rank"] in ["lil", "main", "user"]:
+    rank = decode_token(token=authorization.split(" ")[1])["rank"]
+    if rank in ["lil", "main", "user"]:
         data = await get_vse_dtp()
         return data
     raise HTTPException(status_code=401, detail="Not authorized")

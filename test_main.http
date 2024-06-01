@@ -1,0 +1,177 @@
+# Test your FastAPI endpoints
+
+
+POST http://127.0.0.1:8000/login/ment/
+Content-Type: application/json
+
+{
+    "email": "pidoras@gmail.com",
+    "password": "сосузавзтку"
+}
+
+###
+
+POST http://127.0.0.1:8000/register/lil/
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpZG9yYXNAZ21haWwuY29tIiwicmFuayI6Ilx1MDQzY1x1MDQzMFx1MDQzOVx1MDQzZVx1MDQ0MCIsImRlcF9pZCI6MSwiZXhwIjoxNzE2Njc0NDAwfQ.VugYJ8O_IpBUVLc_e9guhMuXnoeZGyz_1HBKlPYkrUM",
+    "id": 1010,
+    "fio": "Диbnfvор Д.Р.",
+    "rank": "lil",
+    "experience": 7,
+    "age": 29,
+    "dep_id": 1,
+    "email": "vyjsdksdcnv@gmail.com",
+    "password": "сосbshbjsdvhjvhвзтку"
+}
+
+
+###
+
+
+GET http://127.0.0.1:8000/get/gai/1
+Accept: application/json
+
+
+###
+
+
+GET http://127.0.0.1:8000/get/ment/1
+Accept: application/json
+
+
+###
+
+
+POST http://127.0.0.1:8000/register/user/
+Content-Type: application/json
+
+{
+  "fio": "Корпенко А.В.",
+  "license": 243672423,
+  "card": 2341437273,
+  "email": "noejv@mgni.com",
+  "password": "nfjunijnnbnwkj"
+}
+
+
+###
+
+
+POST http://127.0.0.1:8000/register/user/
+Content-Type: application/json
+
+{
+  "fio": "Кораковко А.В.",
+  "license": 24300023,
+  "card": 23432897273,
+  "email": "nohskv@mgni.com",
+  "password": "nfjunijfbnwkj"
+}
+
+###
+
+POST http://127.0.0.1:8000/login/user/
+Content-Type: application/json
+
+{
+  "email": "noejv@mgni.com",
+  "password": "nfjunijnnbnwkj"
+}
+
+###
+
+POST http://127.0.0.1:8000/login/user/
+Content-Type: application/json
+
+{
+  "email": "nohskv@mgni.com",
+  "password": "nfjuniымbnwkj"
+}
+
+###
+
+POST http://127.0.0.1:8000/get/user/data
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpZG9yYXNAZ21haWwuY29tIiwicmFuayI6Ilx1MDQzY1x1MDQzMFx1MDQzOVx1MDQzZVx1MDQ0MCIsImRlcF9pZCI6MSwiZXhwIjoxNzE1ODk2ODAwfQ.gDfKjjVrt-3B9_APydowVbitCXI7f9b-X4NByA0FoS4",
+  "license": 243672423
+}
+
+###
+
+POST http://127.0.0.1:8000/add/car/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzNjcyNDIzLCJmaW8iOiJcdTA0MWFcdTA0M2VcdTA0NDBcdTA0M2ZcdTA0MzVcdTA0M2RcdTA0M2FcdTA0M2UgXHUwNDEwLlx1MDQxMi4iLCJsaWNlbnNlIjoyMzQxNDM3MjczLCJjYXJkIjpbIm5vZWp2QG1nbmkuY29tIl0sInJhbmsiOiJ1c2VyIiwiZXhwIjoxNzE1ODk2ODAwfQ.vnXaLrqaLtIArhhw58g4893w-ga3Y6H--mKON7ci92g",
+  "car_num": "A348HT777",
+  "pts": 7234863248,
+  "insurance": 2374798734,
+  "id_user": 243672423
+}
+
+###
+
+POST http://127.0.0.1:8000/add/car/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzMDAwMjMsImZpbyI6Ilx1MDQxYVx1MDQzZVx1MDQ0MFx1MDQzMFx1MDQzYVx1MDQzZVx1MDQzMlx1MDQzYVx1MDQzZSBcdTA0MTAuXHUwNDEyLiIsImxpY2Vuc2UiOjIzNDMyODk3MjczLCJjYXJkIjpbIm5vaHNrdkBtZ25pLmNvbSJdLCJyYW5rIjoidXNlciIsImV4cCI6MTcxNjAxMjAwMH0.c1jCKqK_teSdcQX-EFOH_fSyzYoNH9wgCkUavCgUynA",
+  "car_num": "A348KE777",
+  "pts": 72343453248,
+  "insurance": 23743458734,
+  "id_user": 24300023
+}
+
+###
+
+GET http://127.0.0.1:8000/get/user/car/A348HT777
+Accept: application/json
+
+
+###
+
+
+GET http://127.0.0.1:8000/get/all/gai
+Accept: application/json
+
+
+###
+
+POST http://127.0.0.1:8000/add/dtp/
+Content-Type: application/json
+
+{
+  "describe": "в рот",
+  "cars": [
+    {
+      "license": 243672423,
+      "car_num": "A686AA667"
+    }],
+  "address": "ПодЗаебатинск"
+}
+
+
+###
+
+POST http://127.0.0.1:8000/get/dtp/address/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzMDAwMjMsImZpbyI6Ilx1MDQxYVx1MDQzZVx1MDQ0MFx1MDQzMFx1MDQzYVx1MDQzZVx1MDQzMlx1MDQzYVx1MDQzZSBcdTA0MTAuXHUwNDEyLiIsImxpY2Vuc2UiOjIzNDMyODk3MjczLCJjYXJkIjpbIm5vaHNrdkBtZ25pLmNvbSJdLCJyYW5rIjoidXNlciIsImV4cCI6MTcxNjA2OTYwMH0.vhreLObISDyWTAvYOnrvLN14z7O59n7NPIuv87y_dAI",
+  "address": "Залупинск"
+}
+
+
+###
+
+POST http://127.0.0.1:8000/get/dtp/car/num/
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQzMDAwMjMsImZpbyI6Ilx1MDQxYVx1MDQzZVx1MDQ0MFx1MDQzMFx1MDQzYVx1MDQzZVx1MDQzMlx1MDQzYVx1MDQzZSBcdTA0MTAuXHUwNDEyLiIsImxpY2Vuc2UiOjIzNDMyODk3MjczLCJjYXJkIjpbIm5vaHNrdkBtZ25pLmNvbSJdLCJyYW5rIjoidXNlciIsImV4cCI6MTcxNjA2OTYwMH0.vhreLObISDyWTAvYOnrvLN14z7O59n7NPIuv87y_dAI",
+  "car_num": "A348KE777"
+}

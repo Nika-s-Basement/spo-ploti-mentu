@@ -208,7 +208,6 @@ async def get_dtp_app(num, authorization: Annotated[str | None, Header()] = None
 
 @app.get("/get/all/dtp")
 async def get_all_dtp(authorization: Annotated[str | None, Header()] = None):
-    print(authorization)
     rank = decode_token(token=authorization.split(" ")[1])["rank"]
     if rank in ["lil", "main", "user"]:
         data = await get_vse_dtp()

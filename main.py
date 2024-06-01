@@ -60,6 +60,8 @@ async def login(ment: Login):
 # регистрация lil ментов (может только main мент)
 @app.post("/register/lil/")
 async def register(ment: lil_form, authorization: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     token = authorization.split(" ")[1]
     if not re.match(email_pattern, ment.email):
         raise HTTPException(status_code=400, detail="Email is invalid")
@@ -131,6 +133,8 @@ async def login(user: Login):
 # Получить данные user по лицензии (только мент)
 @app.get("/get/user/data/{license}")
 async def userdata(license: int, authorization: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     token = authorization.split(" ")[1]
     if decode_token(token=token)["rank"] in ["lil", "main"]:
         return await get_info_by_id("users", ["license", "fio", "card", "email"], license, "license")
@@ -149,6 +153,8 @@ async def usercar(id: str):
 # Добавление машины
 @app.post("/add/car/")
 async def addcar(car: CarModel, authorisation: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     token = authorisation.split(" ")[1]
     if not re.match(car_number_pattern, car.car_num):
         raise HTTPException(status_code=400, detail="Car number is invalid")
@@ -166,6 +172,8 @@ async def addcar(car: CarModel, authorisation: Annotated[str | None, Header()] =
 
 @app.post("/add/dtp/")
 async def add_dtp_main(dtp: DTP, authorization: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     rank = decode_token(token=authorization.split(" ")[1])["rank"]
     if rank not in ["lil", "main", "user"]:
         raise HTTPException(status_code=403, detail="No access right")
@@ -184,6 +192,8 @@ async def add_dtp_main(dtp: DTP, authorization: Annotated[str | None, Header()] 
 
 @app.get("/get/dtp/{address}")
 async def get_dtp_app(address, authorization: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     rank = decode_token(token=authorization.split(" ")[1])["rank"]
     if rank in ["lil", "main", "user"]:
         data = await get_dtp_data(address)
@@ -195,6 +205,8 @@ async def get_dtp_app(address, authorization: Annotated[str | None, Header()] = 
 
 @app.get("/get/dtp/car/{num}")
 async def get_dtp_app(num, authorization: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     rank = decode_token(token=authorization.split(" ")[1])["rank"]
     if rank in ["lil", "main", "user"]:
         data = await get_dtp_data_data(num)
@@ -206,6 +218,8 @@ async def get_dtp_app(num, authorization: Annotated[str | None, Header()] = None
 
 @app.get("/get/all/dtp")
 async def get_all_dtp(authorization: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     rank = decode_token(token=authorization.split(" ")[1])["rank"]
     if rank in ["lil", "main", "user"]:
         data = await get_vse_dtp()
@@ -215,6 +229,8 @@ async def get_all_dtp(authorization: Annotated[str | None, Header()] = None):
 
 @app.get("/get/data/{license}/profile")
 async def get_profile(license: int, authorization: Annotated[str | None, Header()] = None):
+    if authorization is None:
+        raise HTTPException(status_code=401, detail="Authorization header not found or empty")
     rank = decode_token(token=authorization.split(" ")[1])["rank"]
     if rank == "user":
         response = await get_user_profile(license)

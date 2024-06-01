@@ -21,15 +21,36 @@ const formatData = (data) => {
             );
         });
 
-    return (
-        <React.Fragment>
-            <div className="campus-photo">
-                <img src="../../../src/assets/image.png" alt={`Фотография ${data.name}`}/>
-            </div>
-            <dl>{listItems}</dl>
-        </React.Fragment>
-    );
+    // Извлекаем значения из ключа 'map'
+    const {latitude, longitude} = data.map || {};
+
+    // Проверяем, что значения latitude и longitude существуют
+    if (latitude && longitude) {
+        // Создаем ссылку на картинку с использованием значений latitude и longitude
+        const mapImageUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=15&size=600x300&markers=color:red%7Clabel:C%7C${latitude},${longitude}&key=YOUR_API_KEY`;
+
+        // Возвращаем список элементов и изображение карты
+        return (
+            <React.Fragment>
+                <div className="campus-photo">
+                    <img className={styles.campusPhotoImage} src={mapImageUrl} alt={`Фотография ${data.name}`}/>
+                </div>
+                <dl>{listItems}</dl>
+            </React.Fragment>
+        );
+    } else {
+        // Возвращаем список элементов и изображение по умолчанию
+        return (
+            <React.Fragment>
+                <div className="campus-photo">
+                    <img src="../../../src/assets/image.png" alt={`Фотография ${data.name}`}/>
+                </div>
+                <dl>{listItems}</dl>
+            </React.Fragment>
+        );
+    }
 };
+
 
 function AboutPage() {
     const [campusesData, setCampusesData] = useState([]);

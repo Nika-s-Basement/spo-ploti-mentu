@@ -3,24 +3,54 @@ import Layout from '../../component/FrontBackReq/Layout';
 import styles from './AboutPage.module.css';
 
 const formatData = (data) => {
-    const listItems = Object.entries(data)
-        .filter(([key, value]) => key !== 'photo' && value !== null)
-        .map(([key, value]) => (
-            <React.Fragment key={key}>
-                <dt>{key.charAt(0).toUpperCase() + key.slice(1)}:</dt>
-                <dd>{value}</dd>
-            </React.Fragment>
-        ));
+    const keyMap = {
+        address: 'Адрес',
+        fio: 'ФИО',
+        age: 'Возраст',
+    };
 
-    return (
-        <React.Fragment>
-            <div className="campus-photo">
-                <img src="../../../src/assets/image.png" alt={`Фотография ${data.name}`}/>
-            </div>
-            <dl>{listItems}</dl>
-        </React.Fragment>
-    );
+    const listItems = Object.entries(data)
+        .filter(([key, value]) => key !== 'map')
+        .map(([key, value]) => {
+            const formattedKey = keyMap[key];
+            return (
+                <div key={key} className={styles.item}>
+                    <span className={styles.key}>{formattedKey}:</span>
+                    <span className={styles.value}>{value}</span>
+                </div>
+            );
+        });
+
+    // Извлекаем значения из ключа 'map'
+    const {latitude, longitude} = data.map || {};
+
+    // Проверяем, что значения latitude и longitude существуют
+    if (latitude && longitude) {
+        // Создаем ссылку на картинку с использованием значений latitude и longitude
+        const mapImageUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=15&size=600x300&markers=color:red%7Clabel:C%7C${latitude},${longitude}&key=YOUR_API_KEY`;
+
+        // Возвращаем список элементов и изображение карты
+        return (
+            <React.Fragment>
+                <div className="campus-photo">
+                    <img className={styles.campusPhotoImage} src={mapImageUrl} alt={`Фотография ${data.name}`}/>
+                </div>
+                <dl>{listItems}</dl>
+            </React.Fragment>
+        );
+    } else {
+        // Возвращаем список элементов и изображение по умолчанию
+        return (
+            <React.Fragment>
+                <div className="campus-photo">
+                    <img src="../../../src/assets/image.png" alt={`Фотография ${data.name}`}/>
+                </div>
+                <dl>{listItems}</dl>
+            </React.Fragment>
+        );
+    }
 };
+
 
 function AboutPage() {
     const [campusesData, setCampusesData] = useState([]);
@@ -67,26 +97,26 @@ function AboutPage() {
 
     return (
         <Layout>
-                <h1>Список ГИБДД</h1>
-                <>
-                    <form className={styles.form} onSubmit={handleFilterSubmit}>
-                        <label htmlFor="filter-input">Filter by address:</label>
-                        <input type="text" id="filter-input" value={filter} onChange={handleFilterChange}
-                               placeholder="Enter street, city, etc."/>
-                        <button type="submit">Filter</button>
-                    </form>
-                    <div className={styles.Spisok}>
-                        <ul className={styles.nav}>
-                            {campuses.map(campus => (
-                                <li key={campus.id} className={styles.li}>
+            <h1 className={styles.H1}>Список ГИБДД</h1>
+            <>
+                <form className={styles.form} onSubmit={handleFilterSubmit}>
+                    <label htmlFor="filter-input">Поиск по адресу:</label>
+                    <input type="text" id="filter-input" value={filter} onChange={handleFilterChange}
+                           placeholder="Введите адрес"/>
+                    <button type="submit">Поиск</button>
+                </form>
+                <div className={styles.Spisok}>
+                    <ul className={styles.nav}>
+                        {campuses.map(campus => (
+                            <li key={campus.id} className={styles.li}>
                 <pre className={styles.format}>
                   {formatData(campus)}
                 </pre>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </>
         </Layout>
     );
 }

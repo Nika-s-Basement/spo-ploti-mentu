@@ -18,7 +18,6 @@ from models.DTPModel import DTP
 from models.UserModel import User
 from models.loginModel import Login
 from models.registerModel import lil_form
-from models.useddataModel import userData
 from random import choice
 
 app = FastAPI()

@@ -220,7 +220,7 @@ async def get_all_dtp(authorization: Annotated[str | None, Header()] = None):
 async def get_profile(license: int, authorization: Annotated[str | None, Header()] = None):
     rank = decode_token(token=authorization.split(" ")[1])["rank"]
     if rank == "user":
-        response = get_user_profile(license)
+        response = await get_user_profile(license)
         if response is None:
             raise HTTPException(status_code=404, detail="No such user")
         return response

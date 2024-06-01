@@ -10,7 +10,7 @@ const formatData = (data) => {
     };
 
     const listItems = Object.entries(data)
-        .filter(([key, value]) => key !== 'photo' && value !== null)
+        .filter(([key, value]) => key !== 'map')
         .map(([key, value]) => {
             const formattedKey = keyMap[key];
             return (

@@ -52,7 +52,7 @@ const LoginPage = () => {
           <UserForm />
           <div className={styles.bUttOn}>
             <div className={styles.BuTTon}>
-              <Button onClick={handleMentorClick}>Войти как мент</Button>
+              <Button onClick={handleMentorClick}>Вход мента</Button>
               <Button onClick={handleRegisterClick}>Зарегистрироваться</Button>
             </div>
           </div>

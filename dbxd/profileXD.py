@@ -18,7 +18,8 @@ async def get_user_profile(license: int):
                   "license": data[0][1],
                   "card": data[0][2],
                   "email": data[0][3],
-                  "cars": [[data[0][4][i], data[0][5][i], data[0][6][i]]for i in range(len(data[0][4]))]}
+                  "cars": [{"car_num": data[0][4][i], "insurance": data[0][5][i], "pts": data[0][6][i]}
+                           for i in range(len(data[0][4]))]}
         return answer
     except (Exception, psycopg2.DatabaseError) as error:
         return {"error": error}

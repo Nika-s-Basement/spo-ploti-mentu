@@ -34,6 +34,7 @@ const LoginPage = () => {
     localStorage.removeItem('userToken');
     localStorage.removeItem('userFio');
     localStorage.removeItem('userType');
+    localStorage.removeItem('userId')
     console.log('data deleted')
   }, []);
 

@@ -18,6 +18,13 @@ const RegisterForm = ({ label }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let adjustedRank = rank;
+    if (/^main$/i.test(rank)) {
+      adjustedRank = 'main';
+    } else {
+      adjustedRank = 'lil';
+    }
+
     const token = localStorage.getItem('userToken');
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -25,7 +32,7 @@ const RegisterForm = ({ label }) => {
       token: token,
       id: id,
       fio: fio,
-      rank: rank,
+      rank: adjustedRank,
       experience: experience,
       age: age,
       dep_id: depId,

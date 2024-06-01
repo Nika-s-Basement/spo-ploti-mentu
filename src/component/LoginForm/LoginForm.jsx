@@ -16,7 +16,6 @@ const LoginForm = ({label}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-        // Проверка почты
         const emailRegex = /^[^\s@]+@gibdd\.ru$/;
         if (!emailRegex.test(email)) {
             setPopupMessage('Введите корректный адрес электронной почты, заканчивающийся на @gibdd.ru');
@@ -24,7 +23,6 @@ const LoginForm = ({label}) => {
             return;
         }
 
-        // Проверка пароля
         if (password.length < 8) {
             setPopupMessage('Пароль должен состоять из минимум 8 символов');
             setShowPopup(true);
@@ -39,9 +37,11 @@ const LoginForm = ({label}) => {
         console.log(response);
         const token = response.data.token;
         const fio = response.data.fio;
+        const id = response.data.id;
         localStorage.setItem('userToken', token);
         localStorage.setItem('userFio', fio);
         localStorage.setItem('userType', 'ment');
+        localStorage.setItem('userId', id)
         console.log('data saved')
         navigate('/main');
       })

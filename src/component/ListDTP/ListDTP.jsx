@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 import styles from './ListDTP.module.css';
 import InputField from '../InputField/InputField';
 
@@ -10,9 +10,10 @@ const DtpList = ({ dtps }) => {
     };
 
     const filteredDtps = dtps.filter((dtp) =>
-        (dtp.describe && dtp.describe.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (dtp.address && dtp.address.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+        (dtp.describe && typeof dtp.describe === 'string' && dtp.describe.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (dtp.address && typeof dtp.address === 'string' && dtp.address.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (dtp.cars && dtp.cars.join(', ').toLowerCase().includes(searchTerm.toLowerCase()))
+    );
 
     return (
         <div className={styles.container}>
@@ -32,6 +33,7 @@ const DtpList = ({ dtps }) => {
                     <p className={styles.district}>Адрес: {dtp.address}</p>
                 </div>
             ))}
+
         </div>
     );
 };

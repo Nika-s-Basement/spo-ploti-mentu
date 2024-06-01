@@ -7,7 +7,7 @@ const Popup = ({ message, onClose }) => (
       <span className={styles.close} onClick={onClose}>
         &times;
       </span>
-      <p>{message}</p>
+      <div>{message}</div>
     </div>
   </div>
 );

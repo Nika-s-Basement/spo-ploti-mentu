@@ -40,9 +40,12 @@ const LoginForm = () => {
         console.log(response);
         const token = response.data.token;
         const fio = response.data.data.fio;
+        const license = response.data.data.license
         localStorage.setItem('userToken', token);
         localStorage.setItem('userFio', fio);
+        localStorage.setItem('userId', license)
         localStorage.setItem('userType', 'vodila');
+        console.log(license);
         navigate('/main');
       })
       .catch(function (error) {

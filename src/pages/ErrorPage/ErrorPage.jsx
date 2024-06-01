@@ -4,12 +4,12 @@ import Layout from '../../component/FrontBackReq/Layout';
 const ErrorPage = () => {
   return (
     <Layout>
-      <h1>404 - Page non trouvée</h1>
+      <h1>404 - Страница не найдена</h1>
       <p style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center'
-    }}>Désolé, la page que vous recherchez n'existe pas.</p>
+    }}>Если вы видите это сообщение значит вы попали на не существующую страницу. </p>
     </Layout>
   );
 };

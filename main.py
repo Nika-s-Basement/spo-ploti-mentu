@@ -152,10 +152,10 @@ async def usercar(id: str):
 
 # Добавление машины
 @app.post("/add/car/")
-async def addcar(car: CarModel, authorisation: Annotated[str | None, Header()] = None):
+async def addcar(car: CarModel, authorization: Annotated[str | None, Header()] = None):
     if authorization is None:
         raise HTTPException(status_code=401, detail="Authorization header not found or empty")
-    token = authorisation.split(" ")[1]
+    token = authorization.split(" ")[1]
     if not re.match(car_number_pattern, car.car_num):
         raise HTTPException(status_code=400, detail="Car number is invalid")
     if decode_token(token=token)["rank"] not in ["lil", "main", "user"]:

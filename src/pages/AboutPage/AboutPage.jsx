@@ -3,14 +3,23 @@ import Layout from '../../component/FrontBackReq/Layout';
 import styles from './AboutPage.module.css';
 
 const formatData = (data) => {
+    const keyMap = {
+        address: 'Адрес',
+        fio: 'ФИО',
+        age: 'Возраст',
+    };
+
     const listItems = Object.entries(data)
         .filter(([key, value]) => key !== 'photo' && value !== null)
-        .map(([key, value]) => (
-            <React.Fragment key={key}>
-                <dt>{key.charAt(0).toUpperCase() + key.slice(1)}:</dt>
-                <dd>{value}</dd>
-            </React.Fragment>
-        ));
+        .map(([key, value]) => {
+            const formattedKey = keyMap[key];
+            return (
+                <div key={key} className={styles.item}>
+                    <span className={styles.key}>{formattedKey}:</span>
+                    <span className={styles.value}>{value}</span>
+                </div>
+            );
+        });
 
     return (
         <React.Fragment>
@@ -67,26 +76,26 @@ function AboutPage() {
 
     return (
         <Layout>
-                <h1>Список ГИБДД</h1>
-                <>
-                    <form className={styles.form} onSubmit={handleFilterSubmit}>
-                        <label htmlFor="filter-input">Filter by address:</label>
-                        <input type="text" id="filter-input" value={filter} onChange={handleFilterChange}
-                               placeholder="Enter street, city, etc."/>
-                        <button type="submit">Filter</button>
-                    </form>
-                    <div className={styles.Spisok}>
-                        <ul className={styles.nav}>
-                            {campuses.map(campus => (
-                                <li key={campus.id} className={styles.li}>
+            <h1 className={styles.H1}>Список ГИБДД</h1>
+            <>
+                <form className={styles.form} onSubmit={handleFilterSubmit}>
+                    <label htmlFor="filter-input">Поиск по адресу:</label>
+                    <input type="text" id="filter-input" value={filter} onChange={handleFilterChange}
+                           placeholder="Введите адрес"/>
+                    <button type="submit">Поиск</button>
+                </form>
+                <div className={styles.Spisok}>
+                    <ul className={styles.nav}>
+                        {campuses.map(campus => (
+                            <li key={campus.id} className={styles.li}>
                 <pre className={styles.format}>
                   {formatData(campus)}
                 </pre>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </>
         </Layout>
     );
 }

@@ -88,7 +88,6 @@ async def get_all_gai():
     response = await get_gai_all()
     if response is None:
         raise HTTPException(status_code=404, detail="No such gai")
-    print(response)
     return response
 
 
